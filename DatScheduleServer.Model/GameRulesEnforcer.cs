@@ -6,17 +6,27 @@
         {
             if (task.Type == TaskType.Leisure)
             {
-                gameState.StressLevel = gameState.StressLevel - GameRulesParameters.ImpactOfLeisureOnStress;
+                gameState.StressLevel -= GameRulesParameters.ImpactOfLeisureOnStress;
+                return;
             }
 
             if (task.Type == TaskType.Sleep)
             {
-                gameState.TirednessLevel = gameState.TirednessLevel - GameRulesParameters.ImpactOfSleepOnTiredness;
+                gameState.TirednessLevel -= GameRulesParameters.ImpactOfSleepOnTiredness;
+                return;
             }
 
             if (task.Type == TaskType.Meal)
             {
-                gameState.HungerLevel = gameState.HungerLevel - GameRulesParameters.ImpactOfMealOnHunger;
+                gameState.HungerLevel -= GameRulesParameters.ImpactOfMealOnHunger;
+                return;
+            }
+
+            if (task.Type == TaskType.Meeting)
+            {
+                gameState.HungerLevel += 5;
+                gameState.StressLevel += 10;
+                gameState.TirednessLevel += 50;
             }
         }
     }

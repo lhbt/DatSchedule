@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace DatScheduleServer.Model
 {
@@ -14,7 +15,7 @@ namespace DatScheduleServer.Model
 
         public List<Task> Tasks { get; set; }
 
-        private static List<Task> CreateTasks()
+        private List<Task> CreateTasks()
         {
             //at some point should be refactored to generate a list of tasks based on an algorithm and pseudo randomness
             return new List<Task>

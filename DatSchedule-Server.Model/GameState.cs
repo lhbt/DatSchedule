@@ -5,7 +5,7 @@ namespace DatSchedule_Server.Model
     public interface IGameState
     {
         int StressLevel { get; set; }
-        Guid ApplicationId { get; }
+        Guid GameId { get; }
         string[] Tasks { get; set; }
         GameState Initialise();
     }
@@ -14,10 +14,7 @@ namespace DatSchedule_Server.Model
     {
         public int StressLevel { get; set; }
 
-        public Guid ApplicationId
-        {
-            get { return Guid.NewGuid(); }
-        }
+        public Guid GameId { get; set; }
 
         public string[] Tasks { get; set; }
 
@@ -25,6 +22,7 @@ namespace DatSchedule_Server.Model
         {
             return new GameState
             {
+                GameId = Guid.NewGuid(),
                 StressLevel = 50,
                 Tasks = new[]
                 {

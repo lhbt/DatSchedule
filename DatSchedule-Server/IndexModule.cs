@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Web;
 using DatSchedule_Server.Model;
 using Nancy;
-using StructureMap;
 
 namespace DatSchedule_Server
 {
@@ -11,22 +11,26 @@ namespace DatSchedule_Server
         {
             Get["/game"] = parameters =>
             {
-                var game = ObjectFactory.GetInstance<IGameState>();
+                Log("GET CALLED");
 
+                var game = new GameState();
+                game.Initialise();
 
-                return this.Response.AsJson(game.Initialise()).WithHeader("Access-Control-Allow-Origin", "*");
+                HttpContext.Current.Cache.Insert("Game-" + game.GameId, game);
+
+                return Response.AsJson(game).WithHeader("Access-Control-Allow-Origin", "*");
             };
 
-            Post["/init"] = parameters =>
+            Post["/post"] = parameters =>
             {
-                Log();
+                Log("POST CALLED");
                 return "Application initiated";
             };
         }
 
-        private void Log()
+        private void Log(string message)
         {
-            Elmah.ErrorSignal.FromCurrentContext().Raise(new Exception("Test Exception"));
+            Elmah.ErrorSignal.FromCurrentContext().Raise(new Exception(message));
         }
     }
 }

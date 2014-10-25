@@ -13,6 +13,7 @@ namespace application.server.integrationtests
             Assert.That(data.Contains("50"));
         }
        
+        [Ignore]
         [Test]
         public void WhenUserInitiateAGameThenGuidIsPassedback()
         {

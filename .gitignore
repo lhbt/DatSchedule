@@ -30,7 +30,6 @@ obj/
 [Dd]ebug*/
 [Rr]elease*/
 Ankh.NoLoad
-packages/
 
 #MonoDevelop
 *.pidb

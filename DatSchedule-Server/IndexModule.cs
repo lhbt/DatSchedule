@@ -10,6 +10,11 @@
             {
                 return View["index"];
             };
+
+            Get["/initiate"] = parameters =>
+            {
+                return "Application initiated";
+            };
         }
     }
 }

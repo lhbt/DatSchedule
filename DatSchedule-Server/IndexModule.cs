@@ -2,7 +2,7 @@
 {
     using Nancy;
 
-    public class IndexModule : NancyModule
+    public class IndexModule : BaseHandlerModule
     {
         public IndexModule()
         {

@@ -58,6 +58,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseHandlerModule.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="IndexModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

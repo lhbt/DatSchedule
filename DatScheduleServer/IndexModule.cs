@@ -21,7 +21,7 @@ namespace DatScheduleServer
                 return Response.AsJson(game).WithHeader("Access-Control-Allow-Origin", "*");
             };
 
-            Post["/post/{id}"] = parameters =>
+            Post["/update/{id}"] = parameters =>
             {
                 Log("POST CALLED");
 

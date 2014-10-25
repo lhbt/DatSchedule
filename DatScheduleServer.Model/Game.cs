@@ -8,7 +8,7 @@ namespace DatScheduleServer.Model
         {
             CurrentDay = new Day(12);
             Id = Guid.NewGuid();
-            GameState = new GameState(0, 0, 0);
+            GameState = new GameState(100, 100, 100);
             EndOfDay = false;
             GameOver = false;
         }

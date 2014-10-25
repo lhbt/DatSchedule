@@ -33,15 +33,15 @@ namespace DatScheduleServer.Tests.UnitTests
             var task = new Task("Leisure Break", 1.0, TaskType.Leisure, "");
 
             GameRulesEnforcer.ApplyRule(task, game.GameState);
-            Assert.That(game.GameState.StressLevel, Is.EqualTo(stressLevel - GameRulesParameters.ImpactOfLeisureOnStress));
+            Assert.That(game.GameState.StressLevel, Is.EqualTo(stressLevel + GameRulesParameters.ImpactOfLeisureOnStress));
         }
 
         [Test]
-        public void having_a_sleep_should_decrease_tiredness_by_60()
+        public void having_a_sleep_should_increase_fatigue()
         {
             var game = new Game();
 
-            const int level = 90;
+            const int level = 20;
 
             game.GameState.TirednessLevel = level;
 
@@ -49,11 +49,11 @@ namespace DatScheduleServer.Tests.UnitTests
             
             GameRulesEnforcer.ApplyRule(task, game.GameState);
 
-            Assert.That(game.GameState.TirednessLevel, Is.EqualTo(level - GameRulesParameters.ImpactOfSleepOnTiredness));
+            Assert.That(game.GameState.TirednessLevel, Is.EqualTo(level + GameRulesParameters.ImpactOfSleepOnTiredness));
         }
 
         [Test]
-        public void having_a_meal_should_decrease_hunger_by_30()
+        public void having_a_meal_should_increase_hunger()
         {
             var game = new Game();
 
@@ -65,7 +65,7 @@ namespace DatScheduleServer.Tests.UnitTests
 
             GameRulesEnforcer.ApplyRule(task, game.GameState);
 
-            Assert.That(game.GameState.HungerLevel, Is.EqualTo(level - GameRulesParameters.ImpactOfMealOnHunger));
+            Assert.That(game.GameState.HungerLevel, Is.EqualTo(level + GameRulesParameters.ImpactOfMealOnHunger));
         }
 
         [Test]

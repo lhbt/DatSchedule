@@ -38,9 +38,6 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\packages\ServiceStack.Text.4.0.32\lib\net40\ServiceStack.Text.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -60,6 +57,10 @@
     <ProjectReference Include="..\..\DatScheduleServer.Model\DatScheduleServer.Model.csproj">
       <Project>{69929539-23e1-440d-b9d4-583da6147d91}</Project>
       <Name>DatScheduleServer.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DatScheduleServer\DatScheduleServer.csproj">
+      <Project>{ED638DD5-E755-4B7A-940D-5C94AB425686}</Project>
+      <Name>DatScheduleServer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

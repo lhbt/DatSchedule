@@ -30,9 +30,9 @@ namespace DatScheduleServer.Tests.UnitTests
             const int stressLevel = 20;
             game.GameState.StressLevel = stressLevel;
 
-            var task = new Task("Leisure Break", 1.0, TaskType.Leisure, "");
+            var task = new Task("Leisure Break", 1, TaskType.Leisure, "");
 
-            GameRulesEnforcer.ApplyRule(task, game.GameState);
+            GameRulesEnforcer.ApplyRule(task, game.GameState, game.CurrentDay);
             Assert.That(game.GameState.StressLevel, Is.EqualTo(stressLevel + GameRulesParameters.ImpactOfLeisureOnStress));
         }
 
@@ -45,9 +45,9 @@ namespace DatScheduleServer.Tests.UnitTests
 
             game.GameState.TirednessLevel = level;
 
-            var task = new Task("Sleep", 7.0, TaskType.Sleep, "");
-            
-            GameRulesEnforcer.ApplyRule(task, game.GameState);
+            var task = new Task("Sleep", 7, TaskType.Sleep, "");
+
+            GameRulesEnforcer.ApplyRule(task, game.GameState, game.CurrentDay);
 
             Assert.That(game.GameState.TirednessLevel, Is.EqualTo(level + GameRulesParameters.ImpactOfSleepOnTiredness));
         }
@@ -61,11 +61,40 @@ namespace DatScheduleServer.Tests.UnitTests
 
             game.GameState.HungerLevel = level;
 
-            var task = new Task("Meal", 1.0, TaskType.Meal, "");
+            var task = new Task("Meal", 1, TaskType.Meal, "");
 
-            GameRulesEnforcer.ApplyRule(task, game.GameState);
+            GameRulesEnforcer.ApplyRule(task, game.GameState, game.CurrentDay);
 
             Assert.That(game.GameState.HungerLevel, Is.EqualTo(level + GameRulesParameters.ImpactOfMealOnHunger));
+        }
+
+        [Test]
+        public void it_should_record_the_duration_of_tasks_that_happened_in_a_day()
+        { 
+            var game = new Game();
+
+            const int duration = 2;
+            var task = new Task("Meal", duration, TaskType.Meal, "");
+
+            GameRulesEnforcer.ApplyRule(task, game.GameState, game.CurrentDay);
+
+            Assert.That(game.CurrentDay.TimeSpent, Is.EqualTo(duration));
+
+        }
+
+        [Test]
+        public void it_should_change_day_when_the_spent_duration_equals_the_total_day_duration()
+        {
+            var game = new Game();
+
+            const int duration = 2;
+            game.CurrentDay.Duration = duration;
+            var task = new Task("Meal", duration, TaskType.Meal, "");
+
+            GameRulesEnforcer.ApplyRule(task, game.GameState, game.CurrentDay);
+
+            Assert.That(game.GameState.DayIsOver, Is.True);
+            Assert.That(game.CurrentDay.TimeSpent, Is.EqualTo(0));
         }
 
         [Test]

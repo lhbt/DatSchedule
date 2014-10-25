@@ -2,8 +2,15 @@
 {
     public class GameRulesEnforcer
     {
-        public static void ApplyRule(Task task, GameState gameState)
+        public static void ApplyRule(Task task, GameState gameState, Day currentDay)
         {
+            currentDay.TimeSpent += task.Duration;
+            if (currentDay.TimeSpent == currentDay.Duration)
+            {
+                gameState.DayIsOver = true;
+                currentDay.Reset(currentDay.Duration);
+            }
+            
             if (task.Type == TaskType.Leisure)
             {
                 gameState.StressLevel += GameRulesParameters.ImpactOfLeisureOnStress;

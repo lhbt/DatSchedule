@@ -7,7 +7,10 @@
             StressLevel = stressLevel;
             TirednessLevel = tirednessLevel;
             HungerLevel = hungerLevel;
+            DayIsOver = false;
         }
+
+        public bool DayIsOver { get; set; }
 
         public int StressLevel { get;  set; }
         public int TirednessLevel { get;  set; }

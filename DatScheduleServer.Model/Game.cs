@@ -44,6 +44,11 @@ namespace DatScheduleServer.Model
             {
                 StressLevel = StressLevel - 10;
             }
+
+            if (tasks.Any(x => x.Type == TaskType.Sleep))
+            {
+                TirednessLevel = TirednessLevel - 60;
+            }
         }
     }
 }

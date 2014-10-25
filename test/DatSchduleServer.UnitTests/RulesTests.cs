@@ -35,5 +35,23 @@ namespace DatScheduleServer.Tests.UnitTests
 
             Assert.That(game.StressLevel, Is.EqualTo(10));
         }
+
+        [Test]
+        public void having_a_sleep_should_decrease_tiredness_by_60()
+        {
+            var game = new Game();
+            game.Initialise();
+
+            game.TirednessLevel = 90;
+
+            var tasks = new List<Task>
+            {
+                new Task("Sleep", 7.0, TaskType.Sleep)
+            };
+
+            game.ProcessTasks(tasks);
+
+            Assert.That(game.TirednessLevel, Is.EqualTo(30));
+        }
     }
 }

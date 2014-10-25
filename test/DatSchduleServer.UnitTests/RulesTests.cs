@@ -20,10 +20,14 @@ namespace DatScheduleServer.Tests.UnitTests
             var game = new Game();
 
             const int duration = 2;
-            var task = new Task("Leisure Break", duration, TaskType.Leisure, "");
+            var stressLevel = game.GameState.StressLevel;
+            var task = new Task("Meeting", duration, TaskType.Meeting, "");
 
             GameRulesEnforcer.ApplyRule(task, game.GameState, game.CurrentDay);
-            Assert.That(game.GameState.StressLevel, Is.EqualTo(game.GameState.StressLevel - GameRulesParameters.ImpactOfMeetingOnStress * duration));
+
+            var weighedImpactOfMeetingOnStress = (GameRulesParameters.ImpactOfMeetingOnStress * duration);
+
+            Assert.That(game.GameState.StressLevel, Is.EqualTo(stressLevel - weighedImpactOfMeetingOnStress));
         }
 
         [Test]

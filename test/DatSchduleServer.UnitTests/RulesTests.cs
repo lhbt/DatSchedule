@@ -15,7 +15,19 @@ namespace DatScheduleServer.Tests.UnitTests
         }
 
         [Test]
-        public void having_a_leisure_break_should_decrease_stress_by_10()
+        public void it_should_weight_the_impact_on_levels_based_on_duration()
+        {
+            var game = new Game();
+
+            const int duration = 2;
+            var task = new Task("Leisure Break", duration, TaskType.Leisure, "");
+
+            GameRulesEnforcer.ApplyRule(task, game.GameState, game.CurrentDay);
+            Assert.That(game.GameState.StressLevel, Is.EqualTo(game.GameState.StressLevel - GameRulesParameters.ImpactOfMeetingOnStress * duration));
+        }
+
+        [Test]
+        public void having_a_leisure_break_should_increase_stress()
         {
             var game = new Game();
 
@@ -35,13 +47,13 @@ namespace DatScheduleServer.Tests.UnitTests
 
             const int level = 20;
 
-            game.GameState.TirednessLevel = level;
+            game.GameState.FatigueLevel = level;
 
             var task = new Task("Sleep", 7, TaskType.Sleep, "");
 
             GameRulesEnforcer.ApplyRule(task, game.GameState, game.CurrentDay);
 
-            Assert.That(game.GameState.TirednessLevel, Is.EqualTo(level + GameRulesParameters.ImpactOfSleepOnTiredness));
+            Assert.That(game.GameState.FatigueLevel, Is.EqualTo(level + GameRulesParameters.ImpactOfSleepOnFatigue));
         }
 
         [Test]

@@ -4,7 +4,8 @@
     {
         public static void ApplyRule(Task task, GameState gameState, Day currentDay)
         {
-            currentDay.TimeSpent += task.Duration;
+            var taskDuration = task.Duration;
+            currentDay.TimeSpent += taskDuration;
             gameState.DayIsOver = false;
             if (currentDay.TimeSpent == currentDay.Duration)
             {
@@ -21,8 +22,8 @@
 
             if (task.Type == TaskType.Sleep)
             {
-                gameState.TirednessLevel += GameRulesParameters.ImpactOfSleepOnTiredness;
-                if (gameState.TirednessLevel > 100) gameState.TirednessLevel = 100;
+                gameState.FatigueLevel += GameRulesParameters.ImpactOfSleepOnFatigue;
+                if (gameState.FatigueLevel > 100) gameState.FatigueLevel = 100;
                 return;
             }
 
@@ -35,12 +36,12 @@
 
             if (task.Type == TaskType.Meeting)
             {
-                gameState.HungerLevel -= 5;
+                gameState.HungerLevel -= (GameRulesParameters.ImpactOfMeetingOnHunger * taskDuration);
                 if (gameState.HungerLevel < 0) gameState.HungerLevel = 0;
-                gameState.StressLevel -= 10;
+                gameState.StressLevel -= (GameRulesParameters.ImpactOfMeetingOnStress * taskDuration);
                 if (gameState.StressLevel < 0) gameState.StressLevel = 0;
-                gameState.TirednessLevel -= 10;
-                if (gameState.TirednessLevel < 0) gameState.TirednessLevel = 0;
+                gameState.FatigueLevel -= (GameRulesParameters.ImpactOfMeetingOnFatigue * taskDuration);
+                if (gameState.FatigueLevel < 0) gameState.FatigueLevel = 0;
             }
         }
     }

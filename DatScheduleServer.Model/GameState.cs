@@ -2,10 +2,10 @@
 {
     public class GameState
     {
-        public GameState(int stressLevel, int tirednessLevel, int hungerLevel)
+        public GameState(int stressLevel, int fatigueLevel, int hungerLevel)
         {
             StressLevel = stressLevel;
-            TirednessLevel = tirednessLevel;
+            FatigueLevel = fatigueLevel;
             HungerLevel = hungerLevel;
             DayIsOver = false;
         }
@@ -13,7 +13,7 @@
         public bool DayIsOver { get; set; }
 
         public int StressLevel { get;  set; }
-        public int TirednessLevel { get;  set; }
+        public int FatigueLevel { get;  set; }
         public int HungerLevel { get;  set; }
     }
 }

@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game.cs" />
+    <Compile Include="GameRules.cs" />
     <Compile Include="GameRulesParameters.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

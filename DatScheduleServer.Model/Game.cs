@@ -43,32 +43,5 @@ namespace DatScheduleServer.Model
                 new Task("Code kata", 1.0, TaskType.Meeting, "#33CCFF")
             };
         }
-
-        public void ProcessTask(Task task)
-        {
-            _gameRules.ApplyRule(task, GameState);
-        }
-        
-    }
-
-    public class GameRules
-    {
-        public void ApplyRule(Task task, GameState gameState)
-        {
-            if (task.Type == TaskType.Leisure)
-            {
-                gameState.StressLevel = gameState.StressLevel - GameRulesParameters.ImpactOfLeisureOnStress;
-            }
-
-            if (task.Type == TaskType.Sleep)
-            {
-                gameState.TirednessLevel = gameState.TirednessLevel - GameRulesParameters.ImpactOfSleepOnTiredness;
-            }
-
-            if (task.Type == TaskType.Meal)
-            {
-                gameState.HungerLevel = gameState.HungerLevel - GameRulesParameters.ImpactOfMealOnHunger;
-            }
-        }
     }
 }

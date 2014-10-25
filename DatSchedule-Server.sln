@@ -7,7 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{534108E3-C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "application.server.unittest", "test\application.server.unittest\application.server.unittest.csproj", "{3D1C5437-3162-4A19-97F2-438B2047B5E7}"
 EndProject
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatSchedule-Server.Model", "DatSchedule-Server.Model\DatSchedule-Server.Model.csproj", "{69929539-23E1-440D-B9D4-583DA6147D91}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "application.server.integrationtests", "test\application.server.integrationtests\application.server.integrationtests.csproj", "{FE372E99-1CD9-4686-A906-15347712BDC4}"
+>>>>>>> origin/master
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,15 +27,23 @@ Global
 		{3D1C5437-3162-4A19-97F2-438B2047B5E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D1C5437-3162-4A19-97F2-438B2047B5E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D1C5437-3162-4A19-97F2-438B2047B5E7}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{69929539-23E1-440D-B9D4-583DA6147D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{69929539-23E1-440D-B9D4-583DA6147D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69929539-23E1-440D-B9D4-583DA6147D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69929539-23E1-440D-B9D4-583DA6147D91}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{FE372E99-1CD9-4686-A906-15347712BDC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE372E99-1CD9-4686-A906-15347712BDC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE372E99-1CD9-4686-A906-15347712BDC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE372E99-1CD9-4686-A906-15347712BDC4}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> origin/master
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3D1C5437-3162-4A19-97F2-438B2047B5E7} = {534108E3-CA54-434D-A242-81E20E4FAB2A}
+		{FE372E99-1CD9-4686-A906-15347712BDC4} = {534108E3-CA54-434D-A242-81E20E4FAB2A}
 	EndGlobalSection
 EndGlobal

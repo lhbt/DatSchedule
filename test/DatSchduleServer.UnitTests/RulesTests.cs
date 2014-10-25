@@ -29,7 +29,7 @@ namespace DatScheduleServer.Tests.UnitTests
 
             var task = new Task("Leisure Break", 1.0, TaskType.Leisure);
 
-            game.ProcessTasks(task);
+            game.ProcessTask(task);
 
             Assert.That(game.StressLevel, Is.EqualTo(level - GameRulesParameters.ImpactOfLeisureOnStress));
         }
@@ -46,7 +46,7 @@ namespace DatScheduleServer.Tests.UnitTests
 
             var task = new Task("Sleep", 7.0, TaskType.Sleep);
 
-            game.ProcessTasks(task);
+            game.ProcessTask(task);
 
             Assert.That(game.TirednessLevel, Is.EqualTo(level - GameRulesParameters.ImpactOfSleepOnTiredness));
         }
@@ -63,7 +63,7 @@ namespace DatScheduleServer.Tests.UnitTests
 
             var task = new Task("Meal", 1.0, TaskType.Meal);
 
-            game.ProcessTasks(task);
+            game.ProcessTask(task);
 
             Assert.That(game.HungerLevel, Is.EqualTo(level - GameRulesParameters.ImpactOfMealOnHunger));
         }

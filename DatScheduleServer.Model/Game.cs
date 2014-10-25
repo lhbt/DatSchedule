@@ -38,7 +38,7 @@ namespace DatScheduleServer.Model
             };
         }
 
-        public void ProcessTasks(Task task)
+        public void ProcessTask(Task task)
         {
             if (task.Type == TaskType.Leisure)
             {

@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Web.UI.WebControls;
 using DatSchedule_Server.Model;
-using Newtonsoft.Json;
+using Nancy;
 
 namespace DatSchedule_Server
 {
@@ -16,7 +15,7 @@ namespace DatSchedule_Server
                     StressLevel = 50
                 };
 
-                return JsonConvert.SerializeObject(gameState);
+                return this.Response.AsJson(gameState).WithHeader("Access-Control-Allow-Origin", "*");
             };
 
             Post["/init"] = parameters =>

@@ -8,14 +8,14 @@ namespace DatScheduleServer.Tests.UnitTests
     public class RulesTests
     {
         [Test]
-        public void it_should_generate_8_hours_of_tasks_for_a_day()
+        public void it_should_generate_tasks_for_a_day()
         {
             var game = new Game();
             game.Initialise();
 
             var totalDurationOfTasks = game.Tasks.Sum(x => x.Duration);
 
-            Assert.That(totalDurationOfTasks, Is.EqualTo(8));
+            Assert.That(totalDurationOfTasks, Is.EqualTo(game.DayDuration));
         }
 
         [Test]

@@ -21,11 +21,11 @@ namespace DatSchedule_Server
                 return Response.AsJson(game).WithHeader("Access-Control-Allow-Origin", "*");
             };
 
-            Post["/post"] = parameters =>
+            Post["/post/{id}"] = parameters =>
             {
                 Log("POST CALLED");
 
-                var id = Request.Query("Id");
+                var id = parameters.id;
 
                 var currentGame = HttpContext.Current.Cache.Get("Game-" + id) as GameState;
 

@@ -7,7 +7,7 @@ namespace DatSchedule_Server.Model
         int StressLevel { get; set; }
         Guid Id { get; }
         string[] Tasks { get; set; }
-        GameState Initialise();
+        void Initialise();
     }
 
     public class GameState : IGameState
@@ -18,22 +18,18 @@ namespace DatSchedule_Server.Model
 
         public string[] Tasks { get; set; }
 
-        public GameState Initialise()
+        public void Initialise()
         {
-            return new GameState
+            Id = Guid.NewGuid();
+            StressLevel = 50;
+            Tasks = new[]
             {
-                Id = Guid.NewGuid(),
-                StressLevel = 50,
-                Tasks = new[]
-                {
-                    "Snack Break",
-                    "Toilet Break",
-                    "Work Outside",
-                    "Sick Day",
-                    "Holiday",
-                    "Leisure Hour"
-                }
-
+                "Snack Break",
+                "Toilet Break",
+                "Work Outside",
+                "Sick Day",
+                "Holiday",
+                "Leisure Hour"
             };
 
         }

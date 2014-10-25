@@ -6,6 +6,7 @@ namespace application.server.integrationtests
 {
     public class ExcerciseApis
     {
+        [Ignore]
         [Test]
         public void TestInitiateGetMethod()
         {

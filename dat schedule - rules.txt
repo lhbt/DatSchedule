@@ -1,0 +1,26 @@
+3 levels 
+- Tiredness => sleep to decrease
+- Stress    => leisure to decrease          
+- Hunger    => meal to decrease
+
+
+4 types of task
+- Leisure break => 0.5 hrs
+- Sleep => 7 hrs
+- Meal => 1 hr
+
+
+tasks during the day
+- day starts at 9am
+- 1 hr break at 12:30
+- day off at 17:30
+
+
+work meetings
+- from 9 to 12:30
+- from 13:30 to 17:30
+
+work meetings types
+- Big executive meeting => 2hrs
+- Interview => 1hr
+- Quick team meeting => 0.5hrs

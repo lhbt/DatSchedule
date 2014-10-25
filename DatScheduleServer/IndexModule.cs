@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web;
-using DatSchedule_Server.Model;
+using DatScheduleServer.Model;
 using Nancy;
 
-namespace DatSchedule_Server
+namespace DatScheduleServer
 {
     public class IndexModule : BaseHandlerModule
     {
@@ -13,7 +13,7 @@ namespace DatSchedule_Server
             {
                 Log("GET CALLED");
 
-                var game = new GameState();
+                var game = new Game();
                 game.Initialise();
 
                 HttpContext.Current.Cache.Insert("Game-" + game.Id, game);
@@ -27,7 +27,7 @@ namespace DatSchedule_Server
 
                 var id = parameters.id;
 
-                var currentGame = HttpContext.Current.Cache.Get("Game-" + id) as GameState;
+                var currentGame = HttpContext.Current.Cache.Get("Game-" + id) as Game;
 
                 return Response.AsJson(currentGame).WithHeader("Access-Control-Allow-Origin", "*");
             };

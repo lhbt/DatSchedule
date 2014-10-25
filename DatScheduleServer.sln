@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatSchedule-Server", "DatSchedule-Server\DatSchedule-Server.csproj", "{ED638DD5-E755-4B7A-940D-5C94AB425686}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatScheduleServer", "DatScheduleServer\DatScheduleServer.csproj", "{ED638DD5-E755-4B7A-940D-5C94AB425686}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{534108E3-CA54-434D-A242-81E20E4FAB2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "application.server.unittest", "test\application.server.unittest\application.server.unittest.csproj", "{3D1C5437-3162-4A19-97F2-438B2047B5E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "test\DatSchduleServer.UnitTests\UnitTests.csproj", "{3D1C5437-3162-4A19-97F2-438B2047B5E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatSchedule-Server.Model", "DatSchedule-Server.Model\DatSchedule-Server.Model.csproj", "{69929539-23E1-440D-B9D4-583DA6147D91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatScheduleServer.Model", "DatScheduleServer.Model\DatScheduleServer.Model.csproj", "{69929539-23E1-440D-B9D4-583DA6147D91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "application.server.integrationtests", "test\application.server.integrationtests\application.server.integrationtests.csproj", "{FE372E99-1CD9-4686-A906-15347712BDC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "test\DatScheduleServer.IntegrationTests\IntegrationTests.csproj", "{FE372E99-1CD9-4686-A906-15347712BDC4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8CBA3382-E4E0-43F4-9BDC-50DCEC42E2D0}"
 	ProjectSection(SolutionItems) = preProject

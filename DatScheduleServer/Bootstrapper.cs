@@ -3,7 +3,7 @@ using Nancy.Bootstrapper;
 using Nancy.Responses;
 using Nancy.TinyIoc;
 
-namespace DatSchedule_Server
+namespace DatScheduleServer
 {
     using Nancy;
 

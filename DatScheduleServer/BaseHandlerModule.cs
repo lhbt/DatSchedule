@@ -1,6 +1,6 @@
 ﻿using Nancy;
 
-namespace DatSchedule_Server
+namespace DatScheduleServer
 {
     public class BaseHandlerModule : NancyModule
     {

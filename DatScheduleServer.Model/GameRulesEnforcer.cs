@@ -5,6 +5,7 @@
         public static void ApplyRule(Task task, GameState gameState, Day currentDay)
         {
             currentDay.TimeSpent += task.Duration;
+            gameState.DayIsOver = false;
             if (currentDay.TimeSpent == currentDay.Duration)
             {
                 gameState.DayIsOver = true;

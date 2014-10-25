@@ -1,7 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Web;
 using DatScheduleServer.Model;
 using Nancy;
+using Nancy.Extensions;
+using Newtonsoft.Json;
 
 namespace DatScheduleServer
 {
@@ -28,6 +31,10 @@ namespace DatScheduleServer
                 var id = parameters.id;
 
                 var currentGame = HttpContext.Current.Cache.Get("Game-" + id) as Game;
+
+                var task = JsonConvert.DeserializeObject<Task>(Request.Body.AsString());
+                if (currentGame != null)
+                    currentGame.ProcessTask(task);
 
                 return Response.AsJson(currentGame).WithHeader("Access-Control-Allow-Origin", "*");
             };

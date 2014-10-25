@@ -12,13 +12,20 @@ namespace application.server.integrationtests
             var data = Http.Get("http://datschedule.apphb.com/game");
             Assert.That(data.Contains("50"));
         }
+       
+        [Test]
+        public void WhenUserInitiateAGameThenGuidIsPassedback()
+        {
+            var data = Http.Get("http://datschedule.apphb.com/game");
+            Assert.That(data.Contains("ApplicationId"));
+        }
     }
 
     public static class Http
     {
         public static byte[] Post(string uri, NameValueCollection pairs)
         {
-            byte[] response = null;
+            byte[] response;
             using (WebClient client = new WebClient())
             {
                 response = client.UploadValues(uri, pairs);

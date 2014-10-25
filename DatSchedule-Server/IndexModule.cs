@@ -12,7 +12,9 @@ namespace DatSchedule_Server
             {
                 var gameState = new GameState
                 {
-                    StressLevel = 50
+                    StressLevel = 50,
+                    Tasks = new []{"A","B","C","D","E"}
+
                 };
 
                 return this.Response.AsJson(gameState).WithHeader("Access-Control-Allow-Origin", "*");

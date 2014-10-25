@@ -1,5 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <configuration>
+  <appSettings>
+    <add key="elmah.mvc.disableHandler" value="false" />
+    <add key="elmah.mvc.disableHandleErrorFilter" value="false" />
+    <add key="elmah.mvc.requiresAuthentication" value="false" />
+    <add key="elmah.mvc.IgnoreDefaultRoute" value="false" />
+    <add key="elmah.mvc.allowedRoles" value="*" />
+    <add key="elmah.mvc.allowedUsers" value="*" />
+    <add key="elmah.mvc.route" value="elmah" />
+  </appSettings>
   <configSections>
     <sectionGroup name="elmah">
       <section name="security" requirePermission="false" type="Elmah.SecuritySectionHandler, Elmah" />
@@ -9,32 +17,20 @@
     </sectionGroup>
   </configSections>
   <system.web>
-    <compilation debug="true" targetFramework="4.0" />
-    <httpHandlers>
-      <add verb="*" type="Nancy.Hosting.Aspnet.NancyHttpRequestHandler" path="*" />
-    </httpHandlers>
-  <httpModules>
+    <httpModules>
       <add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah" />
       <add name="ErrorMail" type="Elmah.ErrorMailModule, Elmah" />
-      <add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" />
-    </httpModules></system.web>
+      <add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah"/>
+    </httpModules>
+  </system.web>
   <system.webServer>
     <validation validateIntegratedModeConfiguration="false" />
-    <handlers>
-      <add name="Nancy" verb="*" type="Nancy.Hosting.Aspnet.NancyHttpRequestHandler" path="*" />
-    </handlers>
-  <modules>
+    <modules>
       <add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah" preCondition="managedHandler" />
       <add name="ErrorMail" type="Elmah.ErrorMailModule, Elmah" preCondition="managedHandler" />
       <add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" preCondition="managedHandler" />
-    </modules></system.webServer>
-<appSettings>
-    <add key="elmah.mvc.disableHandler" value="false" />
-    <add key="elmah.mvc.disableHandleErrorFilter" value="false" />
-    <add key="elmah.mvc.requiresAuthentication" value="false" />
-    <add key="elmah.mvc.IgnoreDefaultRoute" value="false" />
-    <add key="elmah.mvc.allowedRoles" value="*" />
-    <add key="elmah.mvc.allowedUsers" value="*" />
-    <add key="elmah.mvc.route" value="elmah" />
-  </appSettings><elmah>
-  </elmah></configuration>
+    </modules>
+  </system.webServer>
+  <elmah>
+  </elmah>
+</configuration>

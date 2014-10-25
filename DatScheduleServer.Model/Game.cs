@@ -6,7 +6,7 @@ namespace DatScheduleServer.Model
     {
         public Game()
         {
-            CurrentDay = new Day(12);
+            CurrentDay = new Day(8);
             Id = Guid.NewGuid();
             GameState = new GameState(100, 100, 100);
             GameOver = false;

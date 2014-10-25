@@ -15,14 +15,6 @@ namespace DatScheduleServer.Tests.UnitTests
         }
 
         [Test]
-        public void when_a_day_is_generated_it_should_have_tasks_matching_its_duration()
-        {
-            var game = new Game();
-
-            Assert.That(game.CurrentDay.Tasks.Sum(x => x.Duration), Is.EqualTo(game.CurrentDay.Duration));
-        }
-
-        [Test]
         public void having_a_leisure_break_should_decrease_stress_by_10()
         {
             var game = new Game();

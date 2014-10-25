@@ -24,7 +24,12 @@ namespace DatSchedule_Server
             Post["/post"] = parameters =>
             {
                 Log("POST CALLED");
-                return "Application initiated";
+
+                var id = Request.Query("Id");
+
+                var currentGame = HttpContext.Current.Cache.Get("Game-" + id) as GameState;
+
+                return Response.AsJson(currentGame).WithHeader("Access-Control-Allow-Origin", "*");
             };
         }
 

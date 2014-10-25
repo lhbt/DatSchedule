@@ -1,6 +1,9 @@
 ﻿using System;
 using DatSchedule_Server.Model;
-using StructureMap;
+using Microsoft.Practices.Unity;
+using Nancy.Bootstrapper;
+using Nancy.Responses;
+using Nancy.TinyIoc;
 
 namespace DatSchedule_Server
 {
@@ -13,12 +16,22 @@ namespace DatSchedule_Server
         // For more information https://github.com/NancyFx/Nancy/wiki/Bootstrapper
         public Bootstrapper()
         {
-            IOC();
         }
 
-        private void IOC()
+        protected override void RequestStartup(TinyIoCContainer requestContainer, IPipelines pipelines, NancyContext context)
         {
-            ObjectFactory.Initialize(x=>x.For<IGameState>().Use<GameState>());
+            pipelines.OnError.AddItemToEndOfPipeline((ctx, ex) =>
+            {
+                Log(ex.Message);
+                return new TextResponse(HttpStatusCode.InternalServerError, ex.Message);
+            });
+
+            base.RequestStartup(requestContainer, pipelines, context);
+        }
+
+        private void Log(string message)
+        {
+            Elmah.ErrorSignal.FromCurrentContext().Raise(new Exception(message));
         }
     }
 }

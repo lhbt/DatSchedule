@@ -15,7 +15,7 @@
             if (task.Type == TaskType.Leisure)
             {
                 gameState.StressLevel += GameRulesParameters.ImpactOfLeisureOnStress;
-                if (gameState.StressLevel > 100) 
+                if (HasMaxValue(gameState.StressLevel)) 
                     gameState.StressLevel = 100;
             }
 
@@ -28,7 +28,7 @@
             if (task.Type == TaskType.Meal)
             {
                 gameState.HungerLevel += GameRulesParameters.ImpactOfMealOnHunger;
-                if (gameState.HungerLevel > 100) gameState.HungerLevel = 100;
+                if (HasMaxValue(gameState.HungerLevel)) gameState.HungerLevel = 100;
             }
 
             if (task.Type == TaskType.Meeting)
@@ -40,6 +40,11 @@
                 gameState.TirednessLevel -= 10;
                 if (gameState.TirednessLevel < 0) gameState.TirednessLevel = 0;
             }
+        }
+
+        private static bool HasMaxValue(int level)
+        {
+            return level > 100;
         }
     }
 }

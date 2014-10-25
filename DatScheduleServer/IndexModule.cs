@@ -31,12 +31,13 @@ namespace DatScheduleServer
                 var id = parameters.id;
 
                 var currentGame = HttpContext.Current.Cache.Get("Game-" + id) as Game;
-
-                var task = JsonConvert.DeserializeObject<Task>(Request.Body.AsString());
-                if (currentGame != null)
+                var ruleApplier = new GameRules();
+                if (currentGame == null)
                 {
-                    currentGame.ProcessTask(task);
+                  throw new Exception("Game Not initialised please re-run.");
                 }
+                var task = JsonConvert.DeserializeObject<Task>(Request.Body.AsString());
+                ruleApplier.ApplyRule(task,currentGame.GameState);
 
                 return Response.AsJson(currentGame.GameState).WithHeader("Access-Control-Allow-Origin", "*");
             };

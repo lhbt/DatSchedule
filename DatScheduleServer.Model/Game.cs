@@ -5,11 +5,11 @@ namespace DatScheduleServer.Model
 {
     public class Game
     {
-        private TaskProcessor _taskProcessor;
+        private readonly GameRules _gameRules;
 
         public Game()
         {
-            _taskProcessor = new TaskProcessor();
+            _gameRules = new GameRules();
         }
 
         public GameState GameState { get; set; }
@@ -46,14 +46,14 @@ namespace DatScheduleServer.Model
 
         public void ProcessTask(Task task)
         {
-            _taskProcessor.ProcessTask(task, GameState);
+            _gameRules.ApplyRule(task, GameState);
         }
         
     }
 
-    public class TaskProcessor
+    public class GameRules
     {
-        public void ProcessTask(Task task, GameState gameState)
+        public void ApplyRule(Task task, GameState gameState)
         {
             if (task.Type == TaskType.Leisure)
             {

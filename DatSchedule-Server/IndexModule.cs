@@ -1,5 +1,7 @@
 ﻿using System;
-using Elmah.Assertions;
+using System.Web.UI.WebControls;
+using DatSchedule_Server.Model;
+using Newtonsoft.Json;
 
 namespace DatSchedule_Server
 {
@@ -7,14 +9,14 @@ namespace DatSchedule_Server
     {
         public IndexModule()
         {
-            Get["/"] = parameters =>
+            Get["/game"] = parameters =>
             {
-                return View["index"];
-            };
+                var gameState = new GameState
+                {
+                    StressLevel = 50
+                };
 
-            Get["/initiate"] = parameters =>
-            {
-                return "Application initiated";
+                return JsonConvert.SerializeObject(gameState);
             };
 
             Post["/init"] = parameters =>

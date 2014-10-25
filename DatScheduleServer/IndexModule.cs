@@ -39,7 +39,7 @@ namespace DatScheduleServer
 
                 GameRulesEnforcer.ApplyRule(task, currentGame.GameState);
 
-                return Response.AsJson(currentGame.GameState).WithHeader("Access-Control-Allow-Origin", "*");
+                return Response.AsJson(currentGame).WithHeader("Access-Control-Allow-Origin", "*");
             };
         }
 

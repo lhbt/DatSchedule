@@ -9,8 +9,8 @@ namespace application.server.integrationtests
         [Test]
         public void TestInitiateGetMethod()
         {
-            var data = Http.Get("http://datschedule.apphb.com/initiate");
-            Assert.That(data.Contains("initiated"));
+            var data = Http.Get("http://datschedule.apphb.com/game");
+            Assert.That(data.Contains("50"));
         }
     }
 

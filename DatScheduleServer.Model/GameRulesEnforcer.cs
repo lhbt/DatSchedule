@@ -2,13 +2,19 @@
 {
     public class GameRulesEnforcer
     {
-        public static void ApplyRule(Task task, GameState gameState, Day currentDay)
+        public static void ApplyRule(Task task, Game game)
         {
             var taskDuration = task.Duration;
+
+            var currentDay = game.CurrentDay;
+            var gameState = game.GameState;
+
             currentDay.TimeSpent += taskDuration;
             gameState.DayIsOver = false;
+
             if (currentDay.TimeSpent == currentDay.Duration)
             {
+                game.CurrentLevel++;
                 gameState.DayIsOver = true;
                 currentDay.Reset(currentDay.Duration);
             }
@@ -36,12 +42,12 @@
             if (task.Type == TaskType.Meeting)
             {
                 gameState.HungerLevel -= (GameRulesParameters.ImpactOfMeetingOnHunger * taskDuration);
-                if (gameState.HungerLevel < 0) gameState.HungerLevel = 0;
                 gameState.StressLevel -= (GameRulesParameters.ImpactOfMeetingOnStress * taskDuration);
-                if (gameState.StressLevel < 0) gameState.StressLevel = 0;
                 gameState.FatigueLevel -= (GameRulesParameters.ImpactOfMeetingOnFatigue * taskDuration);
-                if (gameState.FatigueLevel < 0) gameState.FatigueLevel = 0;
             }
+
+            if (gameState.HungerLevel <= 0 || gameState.FatigueLevel <= 0 || gameState.StressLevel <= 0)
+                game.GameOver = true;
         }
 
         private static bool HasMaxValue(int level)

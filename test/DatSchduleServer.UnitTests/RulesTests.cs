@@ -15,6 +15,17 @@ namespace DatScheduleServer.Tests.UnitTests
         }
 
         [Test]
+        public void it_should_be_game_over_when_a_level_reaches_0()
+        {
+            var game = new Game();
+
+            var task = new Task("MEGA MEETING OF DEATH", 100, TaskType.Meeting, "");
+
+            GameRulesEnforcer.ApplyRule(task, game);
+            Assert.That(game.GameOver, Is.True);
+        }
+
+        [Test]
         public void it_should_weight_the_impact_on_levels_based_on_duration()
         {
             var game = new Game();
@@ -23,7 +34,7 @@ namespace DatScheduleServer.Tests.UnitTests
             var stressLevel = game.GameState.StressLevel;
             var task = new Task("Meeting", duration, TaskType.Meeting, "");
 
-            GameRulesEnforcer.ApplyRule(task, game.GameState, game.CurrentDay);
+            GameRulesEnforcer.ApplyRule(task, game);
 
             var weighedImpactOfMeetingOnStress = (GameRulesParameters.ImpactOfMeetingOnStress * duration);
 
@@ -40,7 +51,7 @@ namespace DatScheduleServer.Tests.UnitTests
 
             var task = new Task("Leisure Break", 1, TaskType.Leisure, "");
 
-            GameRulesEnforcer.ApplyRule(task, game.GameState, game.CurrentDay);
+            GameRulesEnforcer.ApplyRule(task, game);
             Assert.That(game.GameState.StressLevel, Is.EqualTo(stressLevel + GameRulesParameters.ImpactOfLeisureOnStress));
         }
 
@@ -55,7 +66,7 @@ namespace DatScheduleServer.Tests.UnitTests
 
             var task = new Task("Sleep", 7, TaskType.Sleep, "");
 
-            GameRulesEnforcer.ApplyRule(task, game.GameState, game.CurrentDay);
+            GameRulesEnforcer.ApplyRule(task, game);
 
             Assert.That(game.GameState.FatigueLevel, Is.EqualTo(level + GameRulesParameters.ImpactOfSleepOnFatigue));
         }
@@ -71,7 +82,7 @@ namespace DatScheduleServer.Tests.UnitTests
 
             var task = new Task("Meal", 1, TaskType.Meal, "");
 
-            GameRulesEnforcer.ApplyRule(task, game.GameState, game.CurrentDay);
+            GameRulesEnforcer.ApplyRule(task, game);
 
             Assert.That(game.GameState.HungerLevel, Is.EqualTo(level + GameRulesParameters.ImpactOfMealOnHunger));
         }
@@ -84,7 +95,7 @@ namespace DatScheduleServer.Tests.UnitTests
             const int duration = 2;
             var task = new Task("Meal", duration, TaskType.Meal, "");
 
-            GameRulesEnforcer.ApplyRule(task, game.GameState, game.CurrentDay);
+            GameRulesEnforcer.ApplyRule(task, game);
 
             Assert.That(game.CurrentDay.TimeSpent, Is.EqualTo(duration));
 
@@ -99,7 +110,7 @@ namespace DatScheduleServer.Tests.UnitTests
             game.CurrentDay.Duration = duration;
             var task = new Task("Meal", duration, TaskType.Meal, "");
 
-            GameRulesEnforcer.ApplyRule(task, game.GameState, game.CurrentDay);
+            GameRulesEnforcer.ApplyRule(task, game);
 
             Assert.That(game.GameState.DayIsOver, Is.True);
             Assert.That(game.CurrentDay.TimeSpent, Is.EqualTo(0));

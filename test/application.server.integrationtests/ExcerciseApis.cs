@@ -18,7 +18,7 @@ namespace application.server.integrationtests
         public void WhenUserInitiateAGameThenGuidIsPassedback()
         {
             var data = Http.Get("http://localhost:12008/game");
-            Assert.That(data.Contains("ApplicationId"));
+            Assert.That(data.Contains("Id"));
         }
     }
 

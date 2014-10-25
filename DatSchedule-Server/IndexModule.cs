@@ -16,7 +16,7 @@ namespace DatSchedule_Server
                 var game = new GameState();
                 game.Initialise();
 
-                HttpContext.Current.Cache.Insert("Game-" + game.GameId, game);
+                HttpContext.Current.Cache.Insert("Game-" + game.Id, game);
 
                 return Response.AsJson(game).WithHeader("Access-Control-Allow-Origin", "*");
             };

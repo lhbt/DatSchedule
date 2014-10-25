@@ -18,18 +18,21 @@ namespace DatScheduleServer.Model
             DayDuration = 8;
             Id = Guid.NewGuid();
             Tasks = CreateTasks();
-            GameState = new GameState(0,0,0);
+            GameState = new GameState(0, 0, 0);
         }
 
         private static List<Task> CreateTasks()
         {
             return new List<Task>
             {
-                new Task("Team Meeting", 2.0, TaskType.Meeting, "#33CCFF"),
+                new Task("Team Meeting", 1.0, TaskType.Meeting, "#33CCFF"),
                 new Task("Interview", 1.0, TaskType.Meeting, "#33CCFF"),
-                new Task("Big Executive Meeting", 3.0, TaskType.Meeting, "#33CCFF"),
+                new Task("Big Executive Meeting", 1.0, TaskType.Meeting, "#33CCFF"),
                 new Task("Meal", 1.0, TaskType.Meal, "#FF6633"),
-                new Task("Leisure", 1.0, TaskType.Leisure, "#FFFF33")
+                new Task("Leisure", 1.0, TaskType.Leisure, "#FFFF33"),
+                new Task("Swimming", 1.0, TaskType.Leisure, "#FFFF33"),
+                new Task("Retrospective", 1.0, TaskType.Meeting, "#33CCFF"),
+                new Task("Code kata", 1.0, TaskType.Meeting, "#33CCFF")
             };
         }
 

@@ -15,22 +15,20 @@
             if (task.Type == TaskType.Leisure)
             {
                 gameState.StressLevel += GameRulesParameters.ImpactOfLeisureOnStress;
-                if (gameState.StressLevel > 100) gameState.StressLevel = 100;
-                return;
+                if (gameState.StressLevel > 100) 
+                    gameState.StressLevel = 100;
             }
 
             if (task.Type == TaskType.Sleep)
             {
                 gameState.TirednessLevel += GameRulesParameters.ImpactOfSleepOnTiredness;
                 if (gameState.TirednessLevel > 100) gameState.TirednessLevel = 100;
-                return;
             }
 
             if (task.Type == TaskType.Meal)
             {
                 gameState.HungerLevel += GameRulesParameters.ImpactOfMealOnHunger;
                 if (gameState.HungerLevel > 100) gameState.HungerLevel = 100;
-                return;
             }
 
             if (task.Type == TaskType.Meeting)

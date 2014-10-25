@@ -1,6 +1,7 @@
 ﻿using System;
 using DatSchedule_Server.Model;
 using Nancy;
+using StructureMap;
 
 namespace DatSchedule_Server
 {
@@ -10,13 +11,10 @@ namespace DatSchedule_Server
         {
             Get["/game"] = parameters =>
             {
-                var gameState = new GameState
-                {
-                    StressLevel = 50,
-                    Tasks = new[] { "Snack Break", "Toilet Break", "Work Outside", "Sick Day", "Holiday", "Leisure Hour" }
-                };
+                var game = ObjectFactory.GetInstance<IGameState>();
 
-                return this.Response.AsJson(gameState).WithHeader("Access-Control-Allow-Origin", "*");
+
+                return this.Response.AsJson(game.Initialise()).WithHeader("Access-Control-Allow-Origin", "*");
             };
 
             Post["/init"] = parameters =>

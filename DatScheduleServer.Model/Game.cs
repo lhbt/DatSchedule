@@ -5,6 +5,13 @@ namespace DatScheduleServer.Model
 {
     public class Game
     {
+        private TaskProcessor _taskProcessor;
+
+        public Game()
+        {
+            _taskProcessor = new TaskProcessor();
+        }
+
         public GameState GameState { get; set; }
 
         public int DayDuration { get; set; }
@@ -23,6 +30,7 @@ namespace DatScheduleServer.Model
 
         private static List<Task> CreateTasks()
         {
+            //at some point should be refactored to generate a list of tasks based on an algorithm and pseudo randomness
             return new List<Task>
             {
                 new Task("Team Meeting", 2.0, TaskType.Meeting, "#33CCFF"),
@@ -38,19 +46,28 @@ namespace DatScheduleServer.Model
 
         public void ProcessTask(Task task)
         {
+            _taskProcessor.ProcessTask(task, GameState);
+        }
+        
+    }
+
+    public class TaskProcessor
+    {
+        public void ProcessTask(Task task, GameState gameState)
+        {
             if (task.Type == TaskType.Leisure)
             {
-                GameState.StressLevel = GameState.StressLevel - GameRulesParameters.ImpactOfLeisureOnStress;
+                gameState.StressLevel = gameState.StressLevel - GameRulesParameters.ImpactOfLeisureOnStress;
             }
 
             if (task.Type == TaskType.Sleep)
             {
-                GameState.TirednessLevel = GameState.TirednessLevel - GameRulesParameters.ImpactOfSleepOnTiredness;
+                gameState.TirednessLevel = gameState.TirednessLevel - GameRulesParameters.ImpactOfSleepOnTiredness;
             }
 
             if (task.Type == TaskType.Meal)
             {
-                GameState.HungerLevel = GameState.HungerLevel - GameRulesParameters.ImpactOfMealOnHunger;
+                gameState.HungerLevel = gameState.HungerLevel - GameRulesParameters.ImpactOfMealOnHunger;
             }
         }
     }

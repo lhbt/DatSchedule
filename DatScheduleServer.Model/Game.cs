@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DatScheduleServer.Model
 {
     public class Game
     {
-        public int StressLevel { get; set; }
-        public int TirednessLevel { get; set; }
-        public int HungerLevel { get; set; }
+        public GameState GameState { get; set; }
 
         public int DayDuration { get; set; }
 
@@ -20,10 +17,8 @@ namespace DatScheduleServer.Model
         {
             DayDuration = 8;
             Id = Guid.NewGuid();
-            StressLevel = 10;
-            HungerLevel = 0;
-            TirednessLevel = 0;
             Tasks = CreateTasks();
+            GameState = new GameState(0,0,0);
         }
 
         private static List<Task> CreateTasks()
@@ -42,17 +37,17 @@ namespace DatScheduleServer.Model
         {
             if (task.Type == TaskType.Leisure)
             {
-                StressLevel = StressLevel - GameRulesParameters.ImpactOfLeisureOnStress;
+                GameState.StressLevel = GameState.StressLevel - GameRulesParameters.ImpactOfLeisureOnStress;
             }
 
             if (task.Type == TaskType.Sleep)
             {
-                TirednessLevel = TirednessLevel - GameRulesParameters.ImpactOfSleepOnTiredness;
+                GameState.TirednessLevel = GameState.TirednessLevel - GameRulesParameters.ImpactOfSleepOnTiredness;
             }
 
             if (task.Type == TaskType.Meal)
             {
-                HungerLevel = HungerLevel - GameRulesParameters.ImpactOfMealOnHunger;
+                GameState.HungerLevel = GameState.HungerLevel - GameRulesParameters.ImpactOfMealOnHunger;
             }
         }
     }

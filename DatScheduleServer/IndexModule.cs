@@ -38,7 +38,7 @@ namespace DatScheduleServer
                     currentGame.ProcessTask(task);
                 }
 
-                return Response.AsJson(currentGame).WithHeader("Access-Control-Allow-Origin", "*");
+                return Response.AsJson(currentGame.GameState).WithHeader("Access-Control-Allow-Origin", "*");
             };
         }
 

@@ -17,7 +17,6 @@ namespace DatScheduleServer
                 Log("GET CALLED");
 
                 var game = new Game();
-                game.Initialise();
 
                 HttpContext.Current.Cache.Insert("Game-" + game.Id, game);
 
@@ -31,7 +30,7 @@ namespace DatScheduleServer
                 var id = parameters.id;
 
                 var currentGame = HttpContext.Current.Cache.Get("Game-" + id) as Game;
-                var ruleApplier = new GameRules();
+                var ruleApplier = new GameRulesEnforcer();
                 if (currentGame == null)
                 {
                   throw new Exception("Game Not initialised please re-run.");

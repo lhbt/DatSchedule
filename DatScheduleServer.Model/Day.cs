@@ -9,14 +9,13 @@ namespace DatScheduleServer.Model
             Duration = duration;
             Tasks = CreateTasks();
         }
+
         public int Duration { get; set; }
 
         public List<Task> Tasks { get; set; }
 
         private static List<Task> CreateTasks()
         {
-            var tasks = new List<Task>();
-
             //at some point should be refactored to generate a list of tasks based on an algorithm and pseudo randomness
             return new List<Task>
             {

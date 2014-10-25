@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Web;
 using DatScheduleServer.Model;
 using Nancy;
@@ -30,13 +29,15 @@ namespace DatScheduleServer
                 var id = parameters.id;
 
                 var currentGame = HttpContext.Current.Cache.Get("Game-" + id) as Game;
-                var ruleApplier = new GameRulesEnforcer();
+
                 if (currentGame == null)
                 {
                   throw new Exception("Game Not initialised please re-run.");
                 }
+
                 var task = JsonConvert.DeserializeObject<Task>(Request.Body.AsString());
-                ruleApplier.ApplyRule(task,currentGame.GameState);
+
+                GameRulesEnforcer.ApplyRule(task, currentGame.GameState);
 
                 return Response.AsJson(currentGame.GameState).WithHeader("Access-Control-Allow-Origin", "*");
             };

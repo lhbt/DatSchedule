@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Practices.Unity.ObjectBuilder;
 using Nancy.Bootstrapper;
 using Nancy.Responses;
 using Nancy.TinyIoc;

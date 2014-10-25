@@ -2,7 +2,7 @@
 {
     public class GameRulesEnforcer
     {
-        public void ApplyRule(Task task, GameState gameState)
+        public static void ApplyRule(Task task, GameState gameState)
         {
             if (task.Type == TaskType.Leisure)
             {

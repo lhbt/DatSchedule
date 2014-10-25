@@ -30,11 +30,11 @@ namespace DatScheduleServer.Model
         {
             return new List<Task>
             {
-                new Task("Team Meeting", 2.0, TaskType.Meeting),
-                new Task("Interview", 1.0, TaskType.Meeting),
-                new Task("Big Executive Meeting", 3.0, TaskType.Meeting),
-                new Task("Meal", 1.0, TaskType.Meal),
-                new Task("Leisure", 1.0, TaskType.Leisure)
+                new Task("Team Meeting", 2.0, TaskType.Meeting, "#33CCFF"),
+                new Task("Interview", 1.0, TaskType.Meeting, "#33CCFF"),
+                new Task("Big Executive Meeting", 3.0, TaskType.Meeting, "#33CCFF"),
+                new Task("Meal", 1.0, TaskType.Meal, "#FF6633"),
+                new Task("Leisure", 1.0, TaskType.Leisure, "#FFFF33")
             };
         }
 

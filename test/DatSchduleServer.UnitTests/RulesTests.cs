@@ -27,7 +27,7 @@ namespace DatScheduleServer.Tests.UnitTests
             const int level = 20;
             game.StressLevel = level;
 
-            var task = new Task("Leisure Break", 1.0, TaskType.Leisure);
+            var task = new Task("Leisure Break", 1.0, TaskType.Leisure, "");
 
             game.ProcessTask(task);
 
@@ -44,7 +44,7 @@ namespace DatScheduleServer.Tests.UnitTests
 
             game.TirednessLevel = level;
 
-            var task = new Task("Sleep", 7.0, TaskType.Sleep);
+            var task = new Task("Sleep", 7.0, TaskType.Sleep, "");
 
             game.ProcessTask(task);
 
@@ -61,11 +61,26 @@ namespace DatScheduleServer.Tests.UnitTests
 
             game.HungerLevel = level;
 
-            var task = new Task("Meal", 1.0, TaskType.Meal);
+            var task = new Task("Meal", 1.0, TaskType.Meal, "");
 
             game.ProcessTask(task);
 
             Assert.That(game.HungerLevel, Is.EqualTo(level - GameRulesParameters.ImpactOfMealOnHunger));
+        }
+
+        [Test]
+        public void GameWhenInitiasedWithoneTaskMustHaveColorCodeAssociated()
+        {
+            var game = new Game();
+            game.Initialise();
+
+            const int level = 50;
+
+            game.HungerLevel = level;
+
+
+
+            Assert.That(game.Tasks.FirstOrDefault().ColorCode, Is.Not.Empty);
         }
     }
 }

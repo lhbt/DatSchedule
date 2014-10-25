@@ -34,7 +34,9 @@ namespace DatScheduleServer
 
                 var task = JsonConvert.DeserializeObject<Task>(Request.Body.AsString());
                 if (currentGame != null)
+                {
                     currentGame.ProcessTask(task);
+                }
 
                 return Response.AsJson(currentGame).WithHeader("Access-Control-Allow-Origin", "*");
             };

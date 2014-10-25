@@ -38,19 +38,19 @@ namespace DatScheduleServer.Model
             };
         }
 
-        public void ProcessTasks(List<Task> tasks)
+        public void ProcessTasks(Task task)
         {
-            if (tasks.Any(x => x.Type == TaskType.Leisure))
+            if (task.Type == TaskType.Leisure)
             {
                 StressLevel = StressLevel - GameRulesParameters.ImpactOfLeisureOnStress;
             }
 
-            if (tasks.Any(x => x.Type == TaskType.Sleep))
+            if (task.Type == TaskType.Sleep)
             {
                 TirednessLevel = TirednessLevel - GameRulesParameters.ImpactOfSleepOnTiredness;
             }
 
-            if (tasks.Any(x => x.Type == TaskType.Meal))
+            if (task.Type == TaskType.Meal)
             {
                 HungerLevel = HungerLevel - GameRulesParameters.ImpactOfMealOnHunger;
             }

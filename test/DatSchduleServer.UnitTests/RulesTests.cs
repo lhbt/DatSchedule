@@ -24,7 +24,8 @@ namespace DatScheduleServer.Tests.UnitTests
             var game = new Game();
             game.Initialise();
 
-            game.StressLevel = 20;
+            const int level = 20;
+            game.StressLevel = level;
 
             var tasks = new List<Task>
             {
@@ -33,7 +34,7 @@ namespace DatScheduleServer.Tests.UnitTests
 
             game.ProcessTasks(tasks);
 
-            Assert.That(game.StressLevel, Is.EqualTo(10));
+            Assert.That(game.StressLevel, Is.EqualTo(level - GameRulesParameters.ImpactOfLeisureOnStress));
         }
 
         [Test]
@@ -42,7 +43,9 @@ namespace DatScheduleServer.Tests.UnitTests
             var game = new Game();
             game.Initialise();
 
-            game.TirednessLevel = 90;
+            const int level = 90;
+
+            game.TirednessLevel = level;
 
             var tasks = new List<Task>
             {
@@ -51,7 +54,27 @@ namespace DatScheduleServer.Tests.UnitTests
 
             game.ProcessTasks(tasks);
 
-            Assert.That(game.TirednessLevel, Is.EqualTo(30));
+            Assert.That(game.TirednessLevel, Is.EqualTo(level - GameRulesParameters.ImpactOfSleepOnTiredness));
+        }
+
+        [Test]
+        public void having_a_meal_should_decrease_hunger_by_30()
+        {
+            var game = new Game();
+            game.Initialise();
+
+            const int level = 50;
+
+            game.HungerLevel = level;
+
+            var tasks = new List<Task>
+            {
+                new Task("Meal", 1.0, TaskType.Meal)
+            };
+
+            game.ProcessTasks(tasks);
+
+            Assert.That(game.HungerLevel, Is.EqualTo(level - GameRulesParameters.ImpactOfMealOnHunger));
         }
     }
 }

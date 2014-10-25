@@ -42,12 +42,17 @@ namespace DatScheduleServer.Model
         {
             if (tasks.Any(x => x.Type == TaskType.Leisure))
             {
-                StressLevel = StressLevel - 10;
+                StressLevel = StressLevel - GameRulesParameters.ImpactOfLeisureOnStress;
             }
 
             if (tasks.Any(x => x.Type == TaskType.Sleep))
             {
-                TirednessLevel = TirednessLevel - 60;
+                TirednessLevel = TirednessLevel - GameRulesParameters.ImpactOfSleepOnTiredness;
+            }
+
+            if (tasks.Any(x => x.Type == TaskType.Meal))
+            {
+                HungerLevel = HungerLevel - GameRulesParameters.ImpactOfMealOnHunger;
             }
         }
     }

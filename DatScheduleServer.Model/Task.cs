@@ -2,11 +2,11 @@
 {
     public class Task
     {
-        public Task(string name, double duration, TaskType taskType)
+        public Task(string name, double duration, TaskType type)
         {
             Name = name;
             Duration = duration;
-            Type = taskType;
+            Type = type;
         }
 
         public double Duration { get; private set; }

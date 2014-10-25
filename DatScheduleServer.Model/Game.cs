@@ -33,7 +33,7 @@ namespace DatScheduleServer.Model
                 new Task("Team Meeting", 2.0, TaskType.Meeting),
                 new Task("Interview", 1.0, TaskType.Meeting),
                 new Task("Big Executive Meeting", 3.0, TaskType.Meeting),
-                new Task("Meal", 1.0, TaskType.Meeting),
+                new Task("Meal", 1.0, TaskType.Meal),
                 new Task("Leisure", 1.0, TaskType.Leisure)
             };
         }

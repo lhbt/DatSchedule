@@ -46,7 +46,8 @@ namespace DatScheduleServer.Model
                     new Task("Hitting the intern", 1, TaskType.Leisure, "#FFFF33", false),
                     new Task("Video games", 1, TaskType.Leisure, "#FFFF33", false),
                     new Task("Having a beer", 1, TaskType.Leisure, "#FFFF33", false),
-                    new Task("Watching Fawlty Towers", 1, TaskType.Leisure, "#FFFF33", false)
+                    new Task("Watching Fawlty Towers", 1, TaskType.Leisure, "#FFFF33", false),
+                    new Task("Quick nap", 1, TaskType.Sleep, "#FFFF33", false)
                 };
             }
         }

@@ -20,7 +20,6 @@ namespace DatScheduleServer.Model
             currentDay.TimeSpent += taskDuration;
             gameState.DayIsOver = false;
 
-
             if (currentDay.TimeSpent == currentDay.Duration)
             {
                 game.Message = GameMessages.YouSurvivedAnotherDay;

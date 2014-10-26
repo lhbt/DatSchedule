@@ -12,6 +12,8 @@ namespace DatScheduleServer.Model
             GameOver = false;
         }
 
+        public string Message { get; set; }
+
         public int CurrentLevel { get; set; }
 
         public bool GameOver { get; set; }

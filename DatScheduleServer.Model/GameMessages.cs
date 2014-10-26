@@ -8,7 +8,7 @@
         public static string CharacterDiedOfFatigue =
             "Mr H. had been working too hard, for too long. As a result, he went to sleep during a conf. call with his stakeholders, a sleep which he never woke up from.";
 
-        public static string CharacterDiedOfHunter =
+        public static string CharacterDiedOfHunger =
             "Malnurished, dehydrated, Mr H. dropped dead on the floor while going to his next meeting of the day, after all his organs had suddenly started failing.";
 
         public static string WorkingAfter5PmYouFool =

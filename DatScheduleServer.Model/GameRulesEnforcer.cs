@@ -6,13 +6,13 @@ namespace DatScheduleServer.Model
     {
         public static void ApplyRule(Task task, Game game)
         {
-            var bob = game.CurrentDay.Tasks.FirstOrDefault(x => x.Equals(task));
-            if (bob != null)
+            var matchingTask = game.CurrentDay.Tasks.FirstOrDefault(x => x.Equals(task));
+            if (matchingTask != null)
             {
-                bob.Scheduled = true;
+                matchingTask.Scheduled = true;
             }
-            var taskDuration = task.Duration;
 
+            var taskDuration = task.Duration;
             var currentDay = game.CurrentDay;
             var gameState = game.GameState;
 
@@ -24,6 +24,7 @@ namespace DatScheduleServer.Model
                 game.CurrentLevel++;
                 gameState.DayIsOver = true;
                 gameState.FatigueLevel += 40;
+                game.Message = GameMessages.YouSurvivedAnotherDay;
                 currentDay.Reset(currentDay.Duration);
             }
 
@@ -52,8 +53,24 @@ namespace DatScheduleServer.Model
                 gameState.FatigueLevel = gameState.FatigueLevel.DecreaseValue(GameRulesParameters.ImpactOfMeetingOnFatigue * taskDuration);
             }
 
-            if (gameState.HungerLevel <= 0 || gameState.FatigueLevel <= 0 || gameState.StressLevel <= 0)
+            if (gameState.HungerLevel <= 0)
+            {
                 game.GameOver = true;
+                game.Message = GameMessages.CharacterDiedOfHunger;
+            }
+
+            if (gameState.FatigueLevel <= 0)
+            {
+                game.GameOver = true;
+                game.Message = GameMessages.CharacterDiedOfFatigue;   
+            }
+
+            if (gameState.StressLevel <= 0)
+            {
+                game.GameOver = true;
+                game.Message = GameMessages.CharacterDiedOfHeartAttack;
+            }
+                
         }
     }
 }

@@ -5,9 +5,8 @@ using NUnit.Framework;
 
 namespace DatScheduleServer.Tests.UnitTests
 {
-    public class GenerateRandomUniqieTasksTests
+    public class GenerateRandomUniqueTasksTests
     {
-
         [Test]
         public void GivenSetOftasksMustReturnInRandomOrder()
         {
@@ -26,8 +25,10 @@ namespace DatScheduleServer.Tests.UnitTests
                 new Task("Dup9",10,TaskType.Meeting,""),
                 new Task("Dup19",10,TaskType.Meeting,"")
             };
-            List<Task> setOfTasks = RandomTaskGenerator.GetUniquieSet(duplicateTasks);
+
+            var setOfTasks = RandomTaskGenerator.GetUniqueSet(duplicateTasks);
             var duplicates = setOfTasks.GroupBy(x => x.Name).Where(g => g.Count() > 1).Select(x => x.Key).ToList();
+            
             Assert.That(setOfTasks, Is.Not.Null);
             Assert.That(setOfTasks.Any());
             Assert.That(setOfTasks.Count(), Is.EqualTo(9));

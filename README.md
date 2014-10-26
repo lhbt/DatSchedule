@@ -1,8 +1,14 @@
-Hack Manchester 2014
-===========
-Gary Hall
-Srinivas Sunkari
-Dan Fox
-Laurent Humbert
+DatSchedule-Server
+==================
 
-LateRooms.com
+Hack Manchester 2014 - One Diary Challenge
+
+ LateRooms 'A' Team :
+
+  -Gary Hall
+
+  -Srinivas Sunkari
+
+  -Daniel Fox
+
+  -Laurent Humbert

@@ -54,7 +54,6 @@ namespace DatScheduleServer
             {
                 Log("Scores CALLED");
 
-
                 return Response.AsJson(GetScoreBoard()).WithHeader("Access-Control-Allow-Origin", "*");
             };
         }

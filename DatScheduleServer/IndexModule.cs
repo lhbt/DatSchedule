@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using System.Web;
+using System.Web.Caching;
 using DatScheduleServer.Model;
 using Nancy;
 using Nancy.Extensions;
@@ -48,13 +51,28 @@ namespace DatScheduleServer
             {
                 Log("Scores CALLED");
 
-                return Response.AsJson(new Dictionary<string,int>
-                {
-                    {"PlayerA",10},
-                    {"PlayerB",40},
-                    {"PlayerC",50},
-                }).WithHeader("Access-Control-Allow-Origin", "*");
+
+                return Response.AsJson(GetScoreBoard()).WithHeader("Access-Control-Allow-Origin", "*");
             };
+        }
+
+        private Dictionary<string, int> GetScoreBoard()
+        {
+            
+            List<string> keys = new List<string>();
+            IDictionaryEnumerator enumerator = HttpContext.Current.Cache.GetEnumerator();
+
+            while (enumerator.MoveNext())
+                keys.Add(enumerator.Key.ToString());
+            var scoreBoard = new Dictionary<string, int>();
+
+            for (int i = 0; i < keys.Count; i++)
+            {
+                var game = HttpContext.Current.Cache.Get(keys[i]) as Game;
+                if(game!=null)
+                scoreBoard.Add(game.Id.ToString(),game.TotalScore);
+            }
+            return scoreBoard;
         }
 
         private void Log(string message)

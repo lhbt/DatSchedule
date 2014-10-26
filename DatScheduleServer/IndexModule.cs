@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using DatScheduleServer.Model;
 using Nancy;
@@ -40,6 +41,19 @@ namespace DatScheduleServer
                 GameRulesEnforcer.ApplyRule(task, currentGame);
 
                 return Response.AsJson(currentGame).WithHeader("Access-Control-Allow-Origin", "*");
+            };
+
+
+            Get["/scores"] = parameters =>
+            {
+                Log("Scores CALLED");
+
+                return Response.AsJson(new Dictionary<string,int>
+                {
+                    {"PlayerA",10},
+                    {"PlayerB",40},
+                    {"PlayerC",50},
+                }).WithHeader("Access-Control-Allow-Origin", "*");
             };
         }
 

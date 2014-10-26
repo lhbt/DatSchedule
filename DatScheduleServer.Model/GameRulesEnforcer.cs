@@ -84,7 +84,7 @@ namespace DatScheduleServer.Model
         {
             game.CurrentLevel++;
             gameState.DayIsOver = true;
-            gameState.FatigueLevel = gameState.FatigueLevel.IncreaseValue(45);
+            gameState.FatigueLevel = gameState.FatigueLevel.IncreaseValue(40);
             gameState.StressLevel = gameState.StressLevel.IncreaseValue(15);
             gameState.HungerLevel = gameState.HungerLevel.IncreaseValue(10);
             currentDay.PopulateNextDayData(currentDay.Duration);

@@ -8,6 +8,6 @@
 
         public static int ImpactOfMeetingOnStress { get { return 10; }}
         public static int ImpactOfMeetingOnHunger { get { return 6; }}
-        public static int ImpactOfMeetingOnFatigue { get { return 10; }}
+        public static int ImpactOfMeetingOnFatigue { get { return 11; }}
     }
 }

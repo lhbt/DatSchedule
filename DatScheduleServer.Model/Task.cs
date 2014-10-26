@@ -31,6 +31,7 @@
         public string Name { get; private set; }
         public string ColorCode { get; private set; }
         public TaskType Type { get; private set; }
+        public bool Scheduled { get; set; }
 
         public override bool Equals(object obj)
         {

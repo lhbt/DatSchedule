@@ -23,43 +23,37 @@ namespace DatScheduleServer.Model
             {
                 game.CurrentLevel++;
                 gameState.DayIsOver = true;
+                gameState.FatigueLevel += 40;
                 currentDay.Reset(currentDay.Duration);
             }
 
             if (task.Type == TaskType.Leisure)
             {
-                gameState.StressLevel += GameRulesParameters.ImpactOfLeisureOnStress;
-                if (HasMaxValue(gameState.StressLevel))
-                    gameState.StressLevel = 100;
+                gameState.StressLevel = gameState.StressLevel.IncreaseValue(GameRulesParameters.ImpactOfLeisureOnStress);
+                return;
             }
 
             if (task.Type == TaskType.Sleep)
             {
-                gameState.FatigueLevel += GameRulesParameters.ImpactOfSleepOnFatigue;
-                if (gameState.FatigueLevel > 100) gameState.FatigueLevel = 100;
+                gameState.FatigueLevel = gameState.FatigueLevel.IncreaseValue(GameRulesParameters.ImpactOfSleepOnFatigue);
                 return;
             }
 
             if (task.Type == TaskType.Meal)
             {
-                gameState.HungerLevel += GameRulesParameters.ImpactOfMealOnHunger;
-                if (HasMaxValue(gameState.HungerLevel)) gameState.HungerLevel = 100;
+                gameState.HungerLevel = gameState.HungerLevel.IncreaseValue(GameRulesParameters.ImpactOfMealOnHunger);
+                return;
             }
 
             if (task.Type == TaskType.Meeting)
             {
-                gameState.HungerLevel -= (GameRulesParameters.ImpactOfMeetingOnHunger * taskDuration);
-                gameState.StressLevel -= (GameRulesParameters.ImpactOfMeetingOnStress * taskDuration);
-                gameState.FatigueLevel -= (GameRulesParameters.ImpactOfMeetingOnFatigue * taskDuration);
+                gameState.HungerLevel = gameState.HungerLevel.DecreaseValue(GameRulesParameters.ImpactOfMeetingOnHunger * taskDuration);
+                gameState.StressLevel = gameState.StressLevel.DecreaseValue(GameRulesParameters.ImpactOfMeetingOnStress * taskDuration);
+                gameState.FatigueLevel = gameState.FatigueLevel.DecreaseValue(GameRulesParameters.ImpactOfMeetingOnFatigue * taskDuration);
             }
 
             if (gameState.HungerLevel <= 0 || gameState.FatigueLevel <= 0 || gameState.StressLevel <= 0)
                 game.GameOver = true;
-        }
-
-        private static bool HasMaxValue(int level)
-        {
-            return level > 100;
         }
     }
 }

@@ -16,7 +16,6 @@ namespace DatScheduleServer
                 Log("GET CALLED");
 
                 var game = new Game();
-                Elmah.ErrorSignal.FromCurrentContext().Raise(new Exception(""+game));
 
                 HttpContext.Current.Cache.Insert("Game-" + game.Id, game);
 

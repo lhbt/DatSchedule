@@ -27,7 +27,7 @@ namespace DatScheduleServer.Model
 
         private static bool ListIsBalanced(IEnumerable<Task> randomTaskList)
         {
-            var taskList = randomTaskList as Task[] ?? randomTaskList.ToArray();
+            var taskList = randomTaskList.Distinct().ToList();
 
             var threeHrsLongMeetings = GetMeetingsOfDuration(taskList, 3).ToList();
             var betweenZeroAndOne3HrsMeetings = threeHrsLongMeetings.Count == 0 || threeHrsLongMeetings.Count == 1;

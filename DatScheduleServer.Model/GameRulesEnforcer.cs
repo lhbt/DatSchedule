@@ -1,9 +1,16 @@
-﻿namespace DatScheduleServer.Model
+﻿using System.Linq;
+
+namespace DatScheduleServer.Model
 {
     public class GameRulesEnforcer
     {
         public static void ApplyRule(Task task, Game game)
         {
+            var bob = game.CurrentDay.Tasks.FirstOrDefault(x => x.Equals(task));
+            if (bob != null)
+            {
+                bob.Scheduled = true;
+            }
             var taskDuration = task.Duration;
 
             var currentDay = game.CurrentDay;
@@ -18,11 +25,11 @@
                 gameState.DayIsOver = true;
                 currentDay.Reset(currentDay.Duration);
             }
-            
+
             if (task.Type == TaskType.Leisure)
             {
                 gameState.StressLevel += GameRulesParameters.ImpactOfLeisureOnStress;
-                if (HasMaxValue(gameState.StressLevel)) 
+                if (HasMaxValue(gameState.StressLevel))
                     gameState.StressLevel = 100;
             }
 

@@ -53,7 +53,15 @@ namespace DatScheduleServer
                 Log("Scores CALLED");
 
 
-                return Response.AsJson(GetScoreBoard()).WithHeader("Access-Control-Allow-Origin", "*");
+                var scores = new List<object>(from score in GetScoreBoard()
+                    select new 
+                    {
+                        Name = score.Key,
+                        Score = score.Value
+
+                    });
+
+                return Response.AsJson(scores).WithHeader("Access-Control-Allow-Origin", "*");
             };
         }
 

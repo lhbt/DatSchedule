@@ -20,19 +20,19 @@ namespace DatScheduleServer.Model
             currentDay.TimeSpent += taskDuration;
             gameState.DayIsOver = false;
 
-            if (!game.CurrentDay.Tasks.Any(x => x.Duration <= currentDay.Duration - currentDay.TimeSpent))
-            {
-                game.Message = GameMessages.WorkingAfter5PmYouFool;
-                TriggerNight(game, gameState, currentDay);
-                //Extra penataly for working late. SUCKER !
-                gameState.FatigueLevel = gameState.FatigueLevel.DecreaseValue(-10);
-            }
-
 
             if (currentDay.TimeSpent == currentDay.Duration)
             {
                 game.Message = GameMessages.YouSurvivedAnotherDay;
                 TriggerNight(game, gameState, currentDay);
+            }
+
+            if (!game.CurrentDay.Tasks.Any(x => x.Duration <= (currentDay.Duration - currentDay.TimeSpent)))
+            {
+                game.Message = GameMessages.WorkingAfter5PmYouFool;
+                TriggerNight(game, gameState, currentDay);
+                //Extra penataly for working late. SUCKER !
+                gameState.FatigueLevel = gameState.FatigueLevel.DecreaseValue(-10);
             }
 
             if (task.Type == TaskType.Leisure)

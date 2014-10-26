@@ -42,7 +42,7 @@ namespace DatScheduleServer.Model
                 return tasks;
 
             var leisureBReaks = GameTasks.ListOfTasks.Where(x => x.Type == TaskType.Leisure && !tasks.Contains(x)).ToList();
-            tasks.AddRange(leisureBReaks.Take(rand.Next(0,2)));
+            tasks.AddRange(leisureBReaks.Take(rand.Next(1,3)));
 
             if (tasks.Count == 9)
                 return tasks;

@@ -26,7 +26,7 @@ namespace DatScheduleServer.Tests.UnitTests
                 new Task("Dup19",10,TaskType.Meeting,"")
             };
 
-            var setOfTasks = RandomTaskGenerator.GetUniqueSet(duplicateTasks);
+            var setOfTasks = RandomTaskGenerator.GetUniqueSet(duplicateTasks,new List<Task>());
             var duplicates = setOfTasks.GroupBy(x => x.Name).Where(g => g.Count() > 1).Select(x => x.Key).ToList();
             
             Assert.That(setOfTasks, Is.Not.Null);

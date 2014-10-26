@@ -6,7 +6,7 @@ namespace DatScheduleServer.Model
     {
         public static void ApplyRule(Task task, Game game)
         {
-            game.TotalScore += 10;
+            ScoreRules.Apply(task, game);
             var matchingTask = game.CurrentDay.Tasks.FirstOrDefault(x => x.Equals(task));
             if (matchingTask != null)
             {

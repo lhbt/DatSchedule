@@ -18,7 +18,7 @@ namespace DatScheduleServer.Model
         public void Reset(int duration)
         {
             Duration = duration;
-            Tasks = RandomTaskGenerator.GetUniqueSet(GameTasks.ListOfTasks,new List<Task>());
+            Tasks = RandomTaskGenerator.GetUniqueSet(GameTasks.ListOfTasks, new List<Task>());
             TimeSpent = 0;
         }
 

@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DealWithLeftOverTaskTests.cs" />
+    <Compile Include="GameScoreTests.cs" />
     <Compile Include="GenerateRandomUniqueTasksTests.cs" />
     <Compile Include="RulesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

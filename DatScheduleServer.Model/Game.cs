@@ -11,6 +11,7 @@ namespace DatScheduleServer.Model
             GameState = new GameState(100, 100, 100);
             GameOver = false;
             CurrentLevel = 1;
+            TotalScore = 0;
         }
 
         public string Message { get; set; }
@@ -24,5 +25,7 @@ namespace DatScheduleServer.Model
         public GameState GameState { get; set; }
 
         public Guid Id { get; set; }
+
+        public int TotalScore { get; set; }
     }
 }

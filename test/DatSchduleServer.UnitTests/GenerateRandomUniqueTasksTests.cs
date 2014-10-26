@@ -12,18 +12,18 @@ namespace DatScheduleServer.Tests.UnitTests
         {
             var duplicateTasks = new List<Task>
             {
-                new Task("Dup",10,TaskType.Meeting,""),
-                new Task("Dup",10,TaskType.Meeting,""),
-                new Task("Dup1",10,TaskType.Meeting,""),
-                new Task("Dup2",10,TaskType.Meeting,""),
-                new Task("Dup3",10,TaskType.Meeting,""),
-                new Task("Dup4",10,TaskType.Meeting,""),
-                new Task("Dup5",10,TaskType.Meeting,""),
-                new Task("Dup6",10,TaskType.Meeting,""),
-                new Task("Dup7",10,TaskType.Meeting,""),
-                new Task("Dup8",10,TaskType.Meeting,""),
-                new Task("Dup9",10,TaskType.Meeting,""),
-                new Task("Dup19",10,TaskType.Meeting,"")
+                new Task("Dup",10,TaskType.Meeting,"", false),
+                new Task("Dup",10,TaskType.Meeting,"", false),
+                new Task("Dup1",10,TaskType.Meeting,"", false),
+                new Task("Dup2",10,TaskType.Meeting,"", false),
+                new Task("Dup3",10,TaskType.Meeting,"", false),
+                new Task("Dup4",10,TaskType.Meeting,"", false),
+                new Task("Dup5",10,TaskType.Meeting,"", false),
+                new Task("Dup6",10,TaskType.Meeting,"", false),
+                new Task("Dup7",10,TaskType.Meeting,"", false),
+                new Task("Dup8",10,TaskType.Meeting,"", false),
+                new Task("Dup9",10,TaskType.Meeting,"", false),
+                new Task("Dup19",10,TaskType.Meeting,"", false)
             };
 
             var setOfTasks = RandomTaskGenerator.GetUniqueSet(duplicateTasks,new List<Task>());

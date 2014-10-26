@@ -19,7 +19,7 @@ namespace DatScheduleServer.Tests.UnitTests
         {
             var game = new Game();
 
-            var task = new Task("MEGA MEETING OF DEATH", 100, TaskType.Meeting, "");
+            var task = new Task("MEGA MEETING OF DEATH", 100, TaskType.Meeting, "", false);
 
             GameRulesEnforcer.ApplyRule(task, game);
             Assert.That(game.GameOver, Is.True);
@@ -32,7 +32,7 @@ namespace DatScheduleServer.Tests.UnitTests
 
             const int duration = 2;
             var stressLevel = game.GameState.StressLevel;
-            var task = new Task("Meeting", duration, TaskType.Meeting, "");
+            var task = new Task("Meeting", duration, TaskType.Meeting, "", false);
 
             GameRulesEnforcer.ApplyRule(task, game);
 
@@ -49,7 +49,7 @@ namespace DatScheduleServer.Tests.UnitTests
             const int stressLevel = 20;
             game.GameState.StressLevel = stressLevel;
 
-            var task = new Task("Leisure Break", 1, TaskType.Leisure, "");
+            var task = new Task("Leisure Break", 1, TaskType.Leisure, "", false);
 
             GameRulesEnforcer.ApplyRule(task, game);
             Assert.That(game.GameState.StressLevel, Is.EqualTo(stressLevel + GameRulesParameters.ImpactOfLeisureOnStress));
@@ -64,7 +64,7 @@ namespace DatScheduleServer.Tests.UnitTests
 
             game.GameState.FatigueLevel = level;
 
-            var task = new Task("Sleep", 7, TaskType.Sleep, "");
+            var task = new Task("Sleep", 7, TaskType.Sleep, "", false);
 
             GameRulesEnforcer.ApplyRule(task, game);
 
@@ -80,7 +80,7 @@ namespace DatScheduleServer.Tests.UnitTests
 
             game.GameState.HungerLevel = level;
 
-            var task = new Task("Meal", 1, TaskType.Meal, "");
+            var task = new Task("Meal", 1, TaskType.Meal, "", false);
 
             GameRulesEnforcer.ApplyRule(task, game);
 
@@ -93,7 +93,7 @@ namespace DatScheduleServer.Tests.UnitTests
             var game = new Game();
 
             const int duration = 2;
-            var task = new Task("Meal", duration, TaskType.Meal, "");
+            var task = new Task("Meal", duration, TaskType.Meal, "", false);
 
             GameRulesEnforcer.ApplyRule(task, game);
 
@@ -108,7 +108,7 @@ namespace DatScheduleServer.Tests.UnitTests
 
             const int duration = 2;
             game.CurrentDay.Duration = duration;
-            var task = new Task("Meal", duration, TaskType.Meal, "");
+            var task = new Task("Meal", duration, TaskType.Meal, "", false);
 
             GameRulesEnforcer.ApplyRule(task, game);
 

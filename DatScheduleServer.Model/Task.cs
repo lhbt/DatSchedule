@@ -19,13 +19,13 @@
             }
         }
 
-        public Task(string name, int duration, TaskType type, string colorCode)
+        public Task(string name, int duration, TaskType type, string colorCode, bool scheduled)
         {
             Name = name;
             Duration = duration;
             Type = type;
             ColorCode = colorCode;
-            Scheduled = false;
+            Scheduled = scheduled;
         }
 
         public int Duration { get; private set; }

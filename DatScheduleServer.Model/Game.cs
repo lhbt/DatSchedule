@@ -10,6 +10,7 @@ namespace DatScheduleServer.Model
             Id = Guid.NewGuid();
             GameState = new GameState(100, 100, 100);
             GameOver = false;
+            CurrentLevel = 1;
         }
 
         public string Message { get; set; }

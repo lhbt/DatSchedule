@@ -20,15 +20,19 @@ namespace DatScheduleServer.Model
             currentDay.TimeSpent += taskDuration;
             gameState.DayIsOver = false;
 
+            if (!game.CurrentDay.Tasks.Any(x => x.Duration <= currentDay.Duration - currentDay.TimeSpent))
+            {
+                game.Message = GameMessages.WorkingAfter5PmYouFool;
+                TriggerNight(game, gameState, currentDay);
+                //Extra penataly for working late. SUCKER !
+                gameState.FatigueLevel = gameState.FatigueLevel.DecreaseValue(-10);
+            }
+
+
             if (currentDay.TimeSpent == currentDay.Duration)
             {
-                game.CurrentLevel++;
-                gameState.DayIsOver = true;
-                gameState.FatigueLevel = gameState.FatigueLevel.IncreaseValue(45);
-                gameState.StressLevel = gameState.StressLevel.IncreaseValue(15);
-                gameState.HungerLevel = gameState.HungerLevel.IncreaseValue(10);
                 game.Message = GameMessages.YouSurvivedAnotherDay;
-                currentDay.PopulateNextDayData(currentDay.Duration);
+                TriggerNight(game, gameState, currentDay);
             }
 
             if (task.Type == TaskType.Leisure)
@@ -74,6 +78,16 @@ namespace DatScheduleServer.Model
                 game.Message = GameMessages.CharacterDiedOfHeartAttack;
             }
 
+        }
+
+        private static void TriggerNight(Game game, GameState gameState, Day currentDay)
+        {
+            game.CurrentLevel++;
+            gameState.DayIsOver = true;
+            gameState.FatigueLevel = gameState.FatigueLevel.IncreaseValue(45);
+            gameState.StressLevel = gameState.StressLevel.IncreaseValue(15);
+            gameState.HungerLevel = gameState.HungerLevel.IncreaseValue(10);
+            currentDay.PopulateNextDayData(currentDay.Duration);
         }
     }
 }

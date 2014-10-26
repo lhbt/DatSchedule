@@ -26,7 +26,7 @@ namespace DatScheduleServer.Model
                 TriggerNight(game, gameState, currentDay);
             }
 
-            if (!game.CurrentDay.Tasks.Any(x => x.Duration <= (currentDay.Duration - currentDay.TimeSpent)))
+            if (!game.CurrentDay.Tasks.Where(x => !x.Scheduled).Any(x => x.Duration <= (currentDay.Duration - currentDay.TimeSpent)))
             {
                 game.Message = GameMessages.WorkingAfter5PmYouFool;
                 TriggerNight(game, gameState, currentDay);

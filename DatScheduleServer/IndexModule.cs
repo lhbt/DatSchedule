@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Caching;
@@ -72,7 +73,7 @@ namespace DatScheduleServer
                 if(game!=null)
                 scoreBoard.Add(game.Id.ToString(),game.TotalScore);
             }
-            return scoreBoard;
+            return scoreBoard.OrderByDescending(x => x.Value).Take(10).ToDictionary(x => x.Key, x => x.Value);
         }
 
         private void Log(string message)

@@ -58,13 +58,13 @@ namespace DatScheduleServer
             };
         }
 
-        private List<object> GetScoreBoard()
+        private List<PlayerScore> GetScoreBoard()
         {
 
             List<string> keys = new List<string>();
             IDictionaryEnumerator enumerator = HttpContext.Current.Cache.GetEnumerator();
 
-            var scores = new List<object>();
+            var scores = new List<PlayerScore>();
             while (enumerator.MoveNext())
                 keys.Add(enumerator.Key.ToString());
 
@@ -72,14 +72,14 @@ namespace DatScheduleServer
             {
                 var game = HttpContext.Current.Cache.Get(keys[i]) as Game;
                 if (game != null)
-                    scores.Add(new
+                    scores.Add(new PlayerScore
                     {
                         Name = game.Name == null ? "Anonymous" : game.Name == "null" ? "Anonymous" : game.Name,
                         Score = game.TotalScore
 
                     });
             }
-            return scores;
+            return scores.OrderByDescending(x=>x.Score).ToList();
 
         }
 
@@ -87,5 +87,11 @@ namespace DatScheduleServer
         {
             Elmah.ErrorSignal.FromCurrentContext().Raise(new Exception(message));
         }
+    }
+
+    public class PlayerScore
+    {
+        public string Name { get; set; }
+        public int Score { get; set; }
     }
 }

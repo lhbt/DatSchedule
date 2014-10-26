@@ -53,9 +53,9 @@ namespace DatScheduleServer.Model
 
             while (tasks.Count != 9)
             {
-                var validOneHourMeeting =
-                    GameTasks.ListOfTasks.First(x => x.Type == TaskType.Meeting && x.Duration == 1 && !tasks.Contains(x));
-                tasks.Add(validOneHourMeeting);
+                var validOneHourMeetingOrSleep =
+                    GameTasks.ListOfTasks.First(x => ((x.Type == TaskType.Meeting && x.Duration == 1) || x.Type == TaskType.Sleep) && !tasks.Contains(x));
+                tasks.Add(validOneHourMeetingOrSleep);
             }
 
             return tasks;

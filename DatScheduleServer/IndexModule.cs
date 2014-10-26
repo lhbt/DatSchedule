@@ -39,7 +39,7 @@ namespace DatScheduleServer
 
                 if (currentGame == null)
                 {
-                  throw new Exception("Game Not initialised please re-run.");
+                    throw new Exception("Game Not initialised please re-run.");
                 }
 
                 var task = JsonConvert.DeserializeObject<Task>(Request.Body.AsString());
@@ -60,7 +60,7 @@ namespace DatScheduleServer
 
         private List<object> GetScoreBoard()
         {
-            
+
             List<string> keys = new List<string>();
             IDictionaryEnumerator enumerator = HttpContext.Current.Cache.GetEnumerator();
 
@@ -71,12 +71,13 @@ namespace DatScheduleServer
             for (int i = 0; i < keys.Count; i++)
             {
                 var game = HttpContext.Current.Cache.Get(keys[i]) as Game;
-                if(game!=null)
-                    scores.Add(new {
-                         Name = game.Name,
-                         Score = game.TotalScore
+                if (game != null)
+                    scores.Add(new
+                    {
+                        Name = game.Name == null ? "Anonymous" : game.Name == "null" ? "Anonymous" : game.Name,
+                        Score = game.TotalScore
 
-                     });
+                    });
             }
             return scores;
 

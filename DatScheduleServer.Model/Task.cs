@@ -28,11 +28,16 @@
             Scheduled = scheduled;
         }
 
+        public void SetScheduled()
+        {
+            Scheduled = true;
+        }
+
         public int Duration { get; private set; }
         public string Name { get; private set; }
         public string ColorCode { get; private set; }
         public TaskType Type { get; private set; }
-        public bool Scheduled { get; set; }
+        public bool Scheduled { get; private set; }
 
         public override bool Equals(object obj)
         {

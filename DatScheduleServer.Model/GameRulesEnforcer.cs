@@ -9,7 +9,7 @@ namespace DatScheduleServer.Model
             var matchingTask = game.CurrentDay.Tasks.FirstOrDefault(x => x.Equals(task));
             if (matchingTask != null)
             {
-                matchingTask.Scheduled = true;
+                matchingTask.SetScheduled();
             }
 
             var taskDuration = task.Duration;

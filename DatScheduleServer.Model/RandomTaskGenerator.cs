@@ -51,31 +51,16 @@ namespace DatScheduleServer.Model
             if (tasks.Count == 9)
                 return tasks;
 
+            var oneHourMeetingsOrSleep =
+                GameTasks.ListOfTasks.Where(x => ((x.Type == TaskType.Meeting && x.Duration == 1) || x.Type == TaskType.Sleep)).ToList();
+
             while (tasks.Count != 9)
             {
-                var validOneHourMeetingOrSleep =
-                    GameTasks.ListOfTasks.First(x => ((x.Type == TaskType.Meeting && x.Duration == 1) || x.Type == TaskType.Sleep) && !tasks.Contains(x));
-                tasks.Add(validOneHourMeetingOrSleep);
+                oneHourMeetingsOrSleep.Shuffle();
+                tasks.Add(oneHourMeetingsOrSleep.First(x => !tasks.Contains(x)));
             }
 
             return tasks;
-        }
-    }
-
-    public static class ListExtensions
-    {
-        public static void Shuffle<T>(this IList<T> list)
-        {
-            var rng = new Random();
-            var n = list.Count;
-            while (n > 1)
-            {
-                n--;
-                var k = rng.Next(n + 1);
-                var value = list[k];
-                list[k] = list[n];
-                list[n] = value;
-            }
         }
     }
 }

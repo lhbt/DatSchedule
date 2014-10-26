@@ -57,6 +57,7 @@
     <Compile Include="GameState.cs" />
     <Compile Include="GameTasks.cs" />
     <Compile Include="IntExtensions.cs" />
+    <Compile Include="ListExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomTaskGenerator.cs" />
     <Compile Include="ScoreRules.cs" />

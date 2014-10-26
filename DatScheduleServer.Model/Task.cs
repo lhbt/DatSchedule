@@ -25,6 +25,7 @@
             Duration = duration;
             Type = type;
             ColorCode = colorCode;
+            Scheduled = false;
         }
 
         public int Duration { get; private set; }

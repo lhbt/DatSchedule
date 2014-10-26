@@ -17,7 +17,14 @@ namespace DatScheduleServer.Tests.UnitTests
             GameRulesEnforcer.ApplyRule(new Task("Leisure", 1, TaskType.Leisure, "#FFFF33"), game);
             Assert.That(game.CurrentDay.Tasks.Any(x => !x.Scheduled));
         }
-        [Ignore]
+
+        [Test]
+        public void GivengameIsInitiatedThenNoTasksShouldBeScheduled()
+        {
+            var game = new Game();
+            Assert.That(game.CurrentDay.Tasks.Any(x => x.Scheduled),Is.False);
+        }
+      
         [Test]
         public void GivenIHaveFilledADayThenLeftOverTasksAreAppendedInNextDay()
         {

@@ -6,7 +6,7 @@ namespace DatScheduleServer.Model
     {
         public static void ApplyRule(Task task, Game game)
         {
-            ScoreRules.Apply(task, game);
+           
             var matchingTask = game.CurrentDay.Tasks.FirstOrDefault(x => x.Equals(task));
             if (matchingTask != null)
             {
@@ -76,6 +76,7 @@ namespace DatScheduleServer.Model
                 game.GameOver = true;
                 game.Message = GameMessages.CharacterDiedOfHeartAttack;
             }
+            ScoreRules.Apply(task, game);
 
         }
 

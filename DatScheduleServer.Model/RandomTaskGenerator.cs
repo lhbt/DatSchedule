@@ -30,7 +30,7 @@ namespace DatScheduleServer.Model
             var taskList = randomTaskList as Task[] ?? randomTaskList.ToArray();
 
             var threeHrsLongMeetings = GetMeetingsOfDuration(taskList, 3).ToList();
-            var betweenOneAndTwo3HrsMeetings = threeHrsLongMeetings.Count() <= 1 && threeHrsLongMeetings.Count() >= 2;
+            var betweenZeroAndOne3HrsMeetings = threeHrsLongMeetings.Count == 0 || threeHrsLongMeetings.Count == 1;
 
             var twoHrsLongMeetings = GetMeetingsOfDuration(taskList, 2).ToList();
             var betweenOneAndTwoHrsLongMeetings = twoHrsLongMeetings.Count() <= 1 && twoHrsLongMeetings.Count() >= 2;
@@ -38,9 +38,9 @@ namespace DatScheduleServer.Model
             var oneMeal = taskList.Count(x => x.Type == TaskType.Meal) == 1;
 
             var leisureBreaks = taskList.Count(x => x.Type == TaskType.Leisure);
-            var betweenOneAndTwoLeisureBReaks = leisureBreaks <= 1 && leisureBreaks >= 3;
+            var betweenOneAndTwoLeisureBReaks = leisureBreaks <= 1 && leisureBreaks >= 2;
 
-            return betweenOneAndTwo3HrsMeetings && betweenOneAndTwoHrsLongMeetings && oneMeal &&
+            return betweenZeroAndOne3HrsMeetings && betweenOneAndTwoHrsLongMeetings && oneMeal &&
                    betweenOneAndTwoLeisureBReaks;
         }
 

@@ -18,8 +18,15 @@ namespace DatScheduleServer.Model
         public void Reset(int duration)
         {
             Duration = duration;
-            Tasks = RandomTaskGenerator.GetUniqueSet(GameTasks.ListOfTasks);
+            Tasks = RandomTaskGenerator.GetUniqueSet(GameTasks.ListOfTasks,new List<Task>());
             TimeSpent = 0;
+        }
+
+        public void PopulateNextDayData(int duration)
+        {
+            Duration = duration;
+            TimeSpent = 0;
+            Tasks = RandomTaskGenerator.GetUniqueSet(GameTasks.ListOfTasks, Tasks);
         }
     }
 }

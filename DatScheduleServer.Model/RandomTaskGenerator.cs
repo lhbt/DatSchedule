@@ -6,15 +6,15 @@ namespace DatScheduleServer.Model
 {
     public static class RandomTaskGenerator
     {
-        public static List<Task> GetUniqueSet(List<Task> set)
+        public static List<Task> GetUniqueSet(List<Task> listOfTasks, List<Task> leftOverTasks)
         {
             var random = new Random();
-            var randomTaskList = new List<Task>();
+            List<Task> randomTaskList = leftOverTasks.Where(task => !task.Scheduled).ToList();
 
             while (GetUniquetasks(randomTaskList).Count != 9)
             {
-                var index = random.Next(set.Count());
-                randomTaskList.Add(set[index]);
+                var index = random.Next(listOfTasks.Count());
+                randomTaskList.Add(listOfTasks[index]);
             }
 
             return randomTaskList.Distinct().ToList();

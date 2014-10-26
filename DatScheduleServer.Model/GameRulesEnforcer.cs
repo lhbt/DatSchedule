@@ -25,7 +25,7 @@ namespace DatScheduleServer.Model
                 gameState.DayIsOver = true;
                 gameState.FatigueLevel += 40;
                 game.Message = GameMessages.YouSurvivedAnotherDay;
-                currentDay.Reset(currentDay.Duration);
+                currentDay.PopulateNextDayData(currentDay.Duration);
             }
 
             if (task.Type == TaskType.Leisure)

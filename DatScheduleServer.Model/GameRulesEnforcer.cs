@@ -6,6 +6,7 @@ namespace DatScheduleServer.Model
     {
         public static void ApplyRule(Task task, Game game)
         {
+            game.TotalScore += 10;
             var matchingTask = game.CurrentDay.Tasks.FirstOrDefault(x => x.Equals(task));
             if (matchingTask != null)
             {
@@ -62,7 +63,7 @@ namespace DatScheduleServer.Model
             if (gameState.FatigueLevel <= 0)
             {
                 game.GameOver = true;
-                game.Message = GameMessages.CharacterDiedOfFatigue;   
+                game.Message = GameMessages.CharacterDiedOfFatigue;
             }
 
             if (gameState.StressLevel <= 0)
@@ -70,7 +71,7 @@ namespace DatScheduleServer.Model
                 game.GameOver = true;
                 game.Message = GameMessages.CharacterDiedOfHeartAttack;
             }
-                
+
         }
     }
 }

@@ -13,7 +13,8 @@ namespace DatScheduleServer
             var randomTaskList = new List<Task>();
             while (GetUniquetasks(randomTaskList).Count != 9)
             {
-                randomTaskList.Add(set[random.Next(set.Count())]);
+                int index = random.Next(set.Count());
+                randomTaskList.Add(set[index]);
             }
 
 

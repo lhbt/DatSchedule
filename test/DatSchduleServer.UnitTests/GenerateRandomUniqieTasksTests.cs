@@ -7,34 +7,6 @@ namespace DatScheduleServer.Tests.UnitTests
 {
     public class GenerateRandomUniqieTasksTests
     {
-        [Test]
-        public void GenerateRandomTasksFromAPredefinedSet()
-        {
-            List<Task> setOfTasks = RandomTaskGenerator.GetUniquieSet(new List<Task>
-            {
-                new Task("",10,TaskType.Meeting,"")
-            });
-            var duplicates = setOfTasks.GroupBy(x => x.Name).Where(g => g.Count() > 1).Select(x => x.Key).ToList();
-            Assert.That(setOfTasks, Is.Not.Null);
-            Assert.That(setOfTasks.Any());
-            Assert.That(duplicates.Any(), Is.False);
-        }
-
-        [Test]
-        public void GivenDuplicateTaksShouldReturnUniqueResults()
-        {
-            var duplicateTasks = new List<Task>
-            {
-                new Task("Dup",10,TaskType.Meeting,""),
-                new Task("Dup",10,TaskType.Meeting,"")
-            };
-            List<Task> setOfTasks = RandomTaskGenerator.GetUniquieSet(duplicateTasks);
-            var duplicates = setOfTasks.GroupBy(x => x.Name).Where(g => g.Count() > 1).Select(x => x.Key).ToList();
-            Assert.That(setOfTasks, Is.Not.Null);
-            Assert.That(setOfTasks.Any());
-            Assert.That(setOfTasks.Count(), Is.EqualTo(1));
-            Assert.That(duplicates.Any(), Is.False);
-        }
 
         [Test]
         public void GivenSetOftasksMustReturnInRandomOrder()

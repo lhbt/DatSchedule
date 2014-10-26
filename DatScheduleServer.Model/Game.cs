@@ -27,5 +27,12 @@ namespace DatScheduleServer.Model
         public Guid Id { get; set; }
 
         public int TotalScore { get; set; }
+
+        public void SetName(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; set; }
     }
 }

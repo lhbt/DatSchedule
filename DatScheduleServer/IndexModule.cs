@@ -16,11 +16,13 @@ namespace DatScheduleServer
     {
         public IndexModule()
         {
-            Get["/game"] = parameters =>
+            Get["/game/{name}"] = parameters =>
             {
                 Log("GET CALLED");
 
+                var name = parameters.name;
                 var game = new Game();
+                game.SetName(name);
 
                 HttpContext.Current.Cache.Insert("Game-" + game.Id, game);
 
@@ -53,35 +55,32 @@ namespace DatScheduleServer
                 Log("Scores CALLED");
 
 
-                var scores = new List<object>(from score in GetScoreBoard()
-                    select new 
-                    {
-                        Name = score.Key,
-                        Score = score.Value
-
-                    });
-
-                return Response.AsJson(scores).WithHeader("Access-Control-Allow-Origin", "*");
+                return Response.AsJson(GetScoreBoard()).WithHeader("Access-Control-Allow-Origin", "*");
             };
         }
 
-        private Dictionary<string, int> GetScoreBoard()
+        private List<object> GetScoreBoard()
         {
             
             List<string> keys = new List<string>();
             IDictionaryEnumerator enumerator = HttpContext.Current.Cache.GetEnumerator();
 
+            var scores = new List<object>();
             while (enumerator.MoveNext())
                 keys.Add(enumerator.Key.ToString());
-            var scoreBoard = new Dictionary<string, int>();
 
             for (int i = 0; i < keys.Count; i++)
             {
                 var game = HttpContext.Current.Cache.Get(keys[i]) as Game;
                 if(game!=null)
-                scoreBoard.Add(game.Id.ToString(),game.TotalScore);
+                    scores.Add(new {
+                         Name = game.Name,
+                         Score = game.TotalScore
+
+                     });
             }
-            return scoreBoard.OrderByDescending(x => x.Value).Take(10).ToDictionary(x => x.Key, x => x.Value);
+            return scores;
+
         }
 
         private void Log(string message)

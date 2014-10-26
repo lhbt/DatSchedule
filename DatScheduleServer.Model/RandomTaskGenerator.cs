@@ -24,13 +24,13 @@ namespace DatScheduleServer.Model
             staticTasks.Shuffle();
 
             var threeHoursMeetings = GameTasks.ListOfTasks.Where(x => x.Type == TaskType.Meeting && x.Duration == 3 && !tasks.Contains(x)).ToList();
-            tasks.AddRange(threeHoursMeetings.Take(rand.Next(0,1)));
+            tasks.AddRange(threeHoursMeetings.Take(rand.Next(0,2)));
 
             if (tasks.Count == 9)
                 return tasks;
 
             var twoHoursMeetings = GameTasks.ListOfTasks.Where(x => x.Type == TaskType.Meeting && x.Duration == 2 && !tasks.Contains(x)).ToList();
-            tasks.AddRange(twoHoursMeetings.Take(rand.Next(1, 2)));
+            tasks.AddRange(twoHoursMeetings.Take(rand.Next(0, 3)));
 
             if (tasks.Count == 9)
                 return tasks;
@@ -42,7 +42,7 @@ namespace DatScheduleServer.Model
                 return tasks;
 
             var leisureBReaks = GameTasks.ListOfTasks.Where(x => x.Type == TaskType.Leisure && !tasks.Contains(x)).ToList();
-            tasks.AddRange(leisureBReaks.Take(rand.Next(1,2)));
+            tasks.AddRange(leisureBReaks.Take(rand.Next(0,2)));
 
             if (tasks.Count == 9)
                 return tasks;

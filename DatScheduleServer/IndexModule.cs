@@ -79,7 +79,7 @@ namespace DatScheduleServer
 
                     });
             }
-            return scores.OrderByDescending(x=>x.Score).ToList();
+            return scores.OrderByDescending(x=>x.Score).Take(10).ToList();
 
         }
 
